@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact – Castle Data Partners</title>
+  <link rel="icon" href="TechCrestDark.png" type="image/png">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: #ffffff;
+      color: #2d2d2d;
+      line-height: 1.6;
+    }
+    a { text-decoration: none; color: inherit; }
+
+    :root {
+      --blue: #2979ff;
+      --border: #dde1e7;
+      --muted: #888;
+      --bg2: #f4f6f8;
+    }
+
+    /* ── Navbar ───────────────────────────────────────────────── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 48px;
+      height: 68px;
+      background: #ffffff;
+      border-bottom: 1px solid var(--border);
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #1e1e1e;
+    }
+    .nav-logo .logo-icon {
+      width: 40px; height: 40px;
+      background: var(--blue);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: 0.75rem; color: #fff;
+      flex-shrink: 0;
+      letter-spacing: -0.5px;
+    }
+    .nav-logo .logo-last { color: var(--muted); font-weight: 400; }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      list-style: none;
+    }
+    .nav-links li a {
+      font-size: 0.9rem;
+      color: #666;
+      transition: color .2s;
+    }
+    .nav-links li a:hover { color: #1e1e1e; }
+    .nav-links li a.active { color: #1e1e1e; font-weight: 600; }
+    .nav-links li a.nav-company {
+      color: var(--blue);
+      font-weight: 600;
+    }
+    .nav-links li a.nav-company:hover { color: #1a5fcc; }
+
+    /* ── Page Header ──────────────────────────────────────────── */
+    .page-header {
+      padding: 64px 64px 48px;
+      border-bottom: 1px solid var(--border);
+    }
+    .page-header-label {
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 12px;
+    }
+    .page-header h1 {
+      font-size: clamp(2.4rem, 5vw, 3.6rem);
+      font-weight: 800;
+      color: #1e1e1e;
+      line-height: 1.1;
+    }
+
+    /* ── Map ──────────────────────────────────────────────────── */
+    .map-wrap {
+      width: 100%;
+      height: 340px;
+      border-bottom: 1px solid var(--border);
+      overflow: hidden;
+    }
+    .map-wrap iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+    }
+
+    /* ── Contact Body ─────────────────────────────────────────── */
+    .contact-body {
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: 0;
+      min-height: 500px;
+    }
+    @media (max-width: 768px) { .contact-body { grid-template-columns: 1fr; } }
+
+    /* ── Info Panel ───────────────────────────────────────────── */
+    .contact-info-panel {
+      padding: 56px 48px;
+      border-right: 1px solid var(--border);
+      background: var(--bg2);
+    }
+    .contact-info-panel h2 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #1e1e1e;
+      margin-bottom: 32px;
+    }
+    .info-item {
+      display: flex;
+      gap: 18px;
+      align-items: flex-start;
+      margin-bottom: 32px;
+    }
+    .info-item:last-child { margin-bottom: 0; }
+    .info-icon {
+      width: 44px; height: 44px;
+      flex-shrink: 0;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--blue);
+    }
+    .info-icon svg { width: 20px; height: 20px; }
+    .info-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+    .info-value {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #1e1e1e;
+      margin-bottom: 4px;
+    }
+    .info-note {
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    /* ── Form Panel ───────────────────────────────────────────── */
+    .contact-form-panel {
+      padding: 56px 56px;
+    }
+    .contact-form-panel h2 {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: #1e1e1e;
+      margin-bottom: 6px;
+    }
+    .form-underline {
+      width: 36px; height: 3px;
+      background: var(--blue);
+      border-radius: 2px;
+      margin-bottom: 32px;
+    }
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    @media (max-width: 600px) { .form-row { grid-template-columns: 1fr; } }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .form-group label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #444;
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      padding: 12px 16px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 0.9rem;
+      color: #1e1e1e;
+      font-family: inherit;
+      background: #fff;
+      transition: border-color .2s, box-shadow .2s;
+      outline: none;
+    }
+    .form-group input::placeholder,
+    .form-group textarea::placeholder { color: #bbb; }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px rgba(41,121,255,0.1);
+    }
+    .form-group textarea {
+      resize: vertical;
+      min-height: 140px;
+    }
+    .btn {
+      display: inline-block;
+      padding: 13px 32px;
+      border-radius: 50px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all .2s;
+      letter-spacing: 0.02em;
+      border: none;
+      font-family: inherit;
+    }
+    .btn-primary {
+      background: var(--blue);
+      color: #fff;
+    }
+    .btn-primary:hover { background: #1a5fcc; }
+
+    /* ── Footer ───────────────────────────────────────────────── */
+    footer {
+      background: #1e1e1e;
+      border-top: 1px solid #333;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 24px 64px;
+      font-size: 0.82rem;
+      color: #aaa;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .footer-links { display: flex; gap: 24px; }
+    .footer-links a { color: #aaa; transition: color .2s; }
+    .footer-links a:hover { color: #fff; }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════════════════════
+     NAVBAR
+═══════════════════════════════════════════════════════════════ -->
+<nav>
+  <a href="aboutme.html" class="nav-logo">
+    <div class="logo-icon">RC</div>
+    <span>Rinaldo <span class="logo-last">Castillo</span></span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="aboutme.html">About Me</a></li>
+    <li><a href="resume.html">Resume</a></li>
+    <li><a href="portfolio.html">Portfolio</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="contact.html" class="active">Contact</a></li>
+    <li><a href="index.html" class="nav-company">Castle Data Partners</a></li>
+  </ul>
+</nav>
+
+<!-- ══════════════════════════════════════════════════════════════
+     PAGE HEADER
+═══════════════════════════════════════════════════════════════ -->
+<div class="page-header">
+  <p class="page-header-label">Get in Touch</p>
+  <h1>Contact</h1>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     MAP
+═══════════════════════════════════════════════════════════════ -->
+<div class="map-wrap">
+  <iframe
+    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d193595.25291936432!2d-74.11976314!3d40.6974034!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew%20York%2C%20NY!5e0!3m2!1sen!2sus!4v1685000000000!5m2!1sen!2sus"
+    allowfullscreen=""
+    loading="lazy"
+    referrerpolicy="no-referrer-when-downgrade"
+    title="Castle Data Partners – New York, NY">
+  </iframe>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     CONTACT BODY
+═══════════════════════════════════════════════════════════════ -->
+<div class="contact-body">
+
+  <!-- Info -->
+  <div class="contact-info-panel">
+    <h2>Direct Contact</h2>
+
+    <div class="info-item">
+      <div class="info-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.68A2 2 0 012 .99h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+        </svg>
+      </div>
+      <div>
+        <div class="info-label">Phone / Text</div>
+        <div class="info-value">(917) 426-7864</div>
+        <div class="info-note">Call or text anytime — we respond fast.</div>
+      </div>
+    </div>
+
+    <div class="info-item">
+      <div class="info-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/>
+        </svg>
+      </div>
+      <div>
+        <div class="info-label">Location</div>
+        <div class="info-value">New York, NY</div>
+        <div class="info-note">Serving New York and surrounding areas.</div>
+      </div>
+    </div>
+
+    <div class="info-item">
+      <div class="info-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>
+        </svg>
+      </div>
+      <div>
+        <div class="info-label">Email</div>
+        <div class="info-value">info@castledatapartners.com</div>
+        <div class="info-note">We reply within 24 hours.</div>
+      </div>
+    </div>
+
+    <div class="info-item">
+      <div class="info-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+        </svg>
+      </div>
+      <div>
+        <div class="info-label">Hours</div>
+        <div class="info-value">Mon – Sat, 8am – 6pm ET</div>
+        <div class="info-note">Available for emergencies outside these hours.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Form -->
+  <div class="contact-form-panel">
+    <h2>How Can I Help You?</h2>
+    <div class="form-underline"></div>
+    <form class="contact-form" id="contact-form" action="https://formspree.io/f/mjgzbkqz" method="POST">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="name">Full Name</label>
+          <input type="text" id="name" name="name" placeholder="Jane Smith" required />
+        </div>
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email" placeholder="jane@example.com" required />
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="subject">Subject</label>
+        <input type="text" id="subject" name="subject" placeholder="What do you need help with?" required />
+      </div>
+      <div class="form-group">
+        <label for="message">Message</label>
+        <textarea id="message" name="message" placeholder="Tell me more about what's going on — the more detail the better." required></textarea>
+      </div>
+      <div>
+        <button type="submit" class="btn btn-primary">Send Message →</button>
+      </div>
+    </form>
+    <div id="form-success" style="display:none; margin-top:24px; padding:20px 24px; background:#eef9f0; border:1px solid #b2dfcb; border-radius:10px; color:#1e6e42; font-size:0.95rem; line-height:1.6;">
+      <strong>Message sent!</strong> Thanks for reaching out — I'll get back to you within 24 hours.
+    </div>
+    <script>
+      document.getElementById('contact-form').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const form = e.target;
+        const btn = form.querySelector('button[type="submit"]');
+        btn.textContent = 'Sending…';
+        btn.disabled = true;
+        try {
+          const res = await fetch(form.action, {
+            method: 'POST',
+            body: new FormData(form),
+            headers: { 'Accept': 'application/json' }
+          });
+          if (res.ok) {
+            form.style.display = 'none';
+            document.getElementById('form-success').style.display = 'block';
+          } else {
+            btn.textContent = 'Send Message →';
+            btn.disabled = false;
+            alert('Something went wrong. Please try again or email info@castledatapartners.com directly.');
+          }
+        } catch {
+          btn.textContent = 'Send Message →';
+          btn.disabled = false;
+          alert('Something went wrong. Please try again or email info@castledatapartners.com directly.');
+        }
+      });
+    </script>
+  </div>
+
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     FOOTER
+═══════════════════════════════════════════════════════════════ -->
+<footer>
+  <span>© 2026 Castle Data Partners LLC. All rights reserved.</span>
+  <div class="footer-links">
+    <a href="aboutme.html">About Me</a>
+    <a href="resume.html">Resume</a>
+    <a href="index.html">Castle Data Partners</a>
+  </div>
+</footer>
+
+<style>
+@media (max-width: 768px) {
+  body { overflow-x: hidden; }
+
+  /* ── Nav ── */
+  nav {
+    padding: 10px 16px;
+    height: auto;
+    min-height: 60px;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .nav-links {
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+  .nav-links li a { font-size: 0.76rem; }
+
+  /* ── Page header ── */
+  .page-header { padding: 40px 20px 32px; }
+
+  /* ── Map ── */
+  .map-wrap { height: 220px; }
+
+  /* ── Info & form panels ── */
+  .contact-info-panel {
+    padding: 32px 20px;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+  .contact-form-panel { padding: 32px 20px; }
+
+  /* ── Info values ── */
+  .info-value { font-size: 0.88rem; word-break: break-all; }
+
+  /* ── Footer ── */
+  footer {
+    padding: 20px 20px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+}
+</style>
+</body>
+</html>

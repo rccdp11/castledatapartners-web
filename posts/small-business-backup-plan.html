@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Why Every Small Business Needs a Backup Plan – Rinaldo Castillo</title>
+  <link rel="icon" href="../TechCrestDark.png" type="image/png">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background: #ffffff; color: #2d2d2d; line-height: 1.6; }
+    a { text-decoration: none; color: inherit; }
+    :root { --blue: #2979ff; --border: #dde1e7; --muted: #888; --bg2: #f4f6f8; }
+    nav { position: sticky; top: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 0 48px; height: 68px; background: #fff; border-bottom: 1px solid var(--border); box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+    .nav-logo { display: flex; align-items: center; gap: 12px; font-size: 1.1rem; font-weight: 600; color: #1e1e1e; }
+    .nav-logo .logo-icon { width: 40px; height: 40px; background: var(--blue); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1rem; color: #fff; flex-shrink: 0; }
+    .nav-logo .logo-last { color: var(--muted); font-weight: 400; }
+    .nav-links { display: flex; align-items: center; gap: 32px; list-style: none; }
+    .nav-links li a { font-size: 0.9rem; color: #666; transition: color .2s; }
+    .nav-links li a:hover { color: #1e1e1e; }
+    .nav-links li a.nav-company { color: var(--blue); font-weight: 600; }
+    .post-wrap { max-width: 760px; margin: 0 auto; padding: 56px 32px 96px; }
+    .back-link { display: inline-flex; align-items: center; gap: 6px; font-size: 0.82rem; color: var(--muted); margin-bottom: 36px; transition: color .2s; }
+    .back-link:hover { color: var(--blue); }
+    .back-link svg { width: 14px; height: 14px; }
+    .post-category { display: inline-block; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--blue); background: #eef4ff; border-radius: 4px; padding: 4px 10px; margin-bottom: 16px; }
+    .post-title { font-size: clamp(1.8rem, 4vw, 2.4rem); font-weight: 800; color: #1e1e1e; line-height: 1.2; margin-bottom: 16px; }
+    .post-meta { display: flex; align-items: center; gap: 16px; font-size: 0.82rem; color: var(--muted); margin-bottom: 32px; flex-wrap: wrap; }
+    .post-meta-dot { width: 3px; height: 3px; border-radius: 50%; background: var(--muted); }
+    .post-cover { width: 100%; aspect-ratio: 16 / 9; border-radius: 10px; overflow: hidden; margin-bottom: 40px; background: var(--bg2); }
+    .post-cover img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .post-content { font-size: 1rem; color: #333; line-height: 1.85; }
+    .post-content h2 { font-size: 1.35rem; font-weight: 700; color: #1e1e1e; margin: 40px 0 14px; }
+    .post-content p { margin-bottom: 20px; }
+    .post-content ul { padding-left: 24px; margin-bottom: 20px; display: flex; flex-direction: column; gap: 8px; }
+    .post-content li { font-size: 0.95rem; color: #444; line-height: 1.75; }
+    .post-content strong { color: #1e1e1e; }
+    .post-content a { color: var(--blue); text-decoration: underline; }
+    .post-content blockquote { border-left: 3px solid var(--blue); padding: 12px 20px; margin: 24px 0; background: #f7f9ff; border-radius: 0 6px 6px 0; font-style: italic; color: #555; }
+    .post-divider { border: none; border-top: 1px solid var(--border); margin: 48px 0; }
+    footer { background: #1e1e1e; border-top: 1px solid #333; display: flex; align-items: center; justify-content: space-between; padding: 24px 64px; font-size: 0.82rem; color: #aaa; flex-wrap: wrap; gap: 12px; }
+    .footer-links { display: flex; gap: 24px; }
+    .footer-links a { color: #aaa; transition: color .2s; }
+    .footer-links a:hover { color: #fff; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="../aboutme.html" class="nav-logo">
+    <div class="logo-icon">R</div>
+    <span>Rinaldo <span class="logo-last">Castillo</span></span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="../aboutme.html">About Me</a></li>
+    <li><a href="../resume.html">Resume</a></li>
+    <li><a href="../portfolio.html">Portfolio</a></li>
+    <li><a href="../blog.html" class="active">Blog</a></li>
+    <li><a href="../contact.html">Contact</a></li>
+    <li><a href="../index.html" class="nav-company">Castle Data Partners</a></li>
+  </ul>
+</nav>
+
+<div class="post-wrap">
+
+  <a href="../blog.html" class="back-link">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+    Back to Blog
+  </a>
+
+  <div class="post-category">Small Business IT</div>
+  <h1 class="post-title">Why Every Small Business Needs a Backup Plan Before Disaster Strikes</h1>
+  <div class="post-meta">
+    <span>Rinaldo Castillo</span>
+    <span class="post-meta-dot"></span>
+    <span>May 12, 2026</span>
+    <span class="post-meta-dot"></span>
+    <span>6 min read</span>
+  </div>
+
+  <div class="post-cover">
+    <img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=1200&q=80" alt="Server room and data backup" />
+  </div>
+
+  <div class="post-content">
+
+    <p>Most small business owners don't think about data backup until it's too late. A hard drive fails. A ransomware attack locks everything. An employee accidentally deletes a critical folder. And suddenly, years of customer records, invoices, and business files are gone.</p>
+
+    <p>The good news: protecting your business data doesn't have to be complicated or expensive. Here's what you need to know.</p>
+
+    <h2>Why Small Businesses Are at Greater Risk Than They Think</h2>
+    <p>Large companies have dedicated IT departments and automated backup systems running around the clock. Small businesses often have neither. Cybercriminals know this — and they target small businesses specifically because they're easier to exploit and less likely to recover quickly from an attack.</p>
+
+    <blockquote>60% of small businesses that suffer a major data loss shut down within six months. A backup plan isn't optional — it's survival.</blockquote>
+
+    <h2>The 3-2-1 Backup Rule</h2>
+    <p>The gold standard for data backup is simple to remember: <strong>3 copies of your data, on 2 different types of storage, with 1 copy offsite.</strong></p>
+    <ul>
+      <li><strong>3 copies:</strong> Your original files, a local backup (external drive or NAS), and a cloud backup</li>
+      <li><strong>2 types of storage:</strong> Don't put all your eggs in one basket — local and cloud</li>
+      <li><strong>1 offsite copy:</strong> Cloud storage counts, or a physical drive kept somewhere other than your office</li>
+    </ul>
+
+    <h2>What Should You Back Up?</h2>
+    <ul>
+      <li>Customer records and contact lists</li>
+      <li>Invoices, quotes, and financial records</li>
+      <li>Business emails and contracts</li>
+      <li>Photos, designs, and creative files</li>
+      <li>Software license keys and configuration files</li>
+      <li>Your website files and database (if you run your own site)</li>
+    </ul>
+
+    <h2>Cloud Backup Options for Small Businesses</h2>
+    <p>There are several affordable, reliable cloud backup services worth considering depending on your setup:</p>
+    <ul>
+      <li><strong>Backblaze Business Backup</strong> — affordable, automatic, great for PCs and Macs</li>
+      <li><strong>Microsoft 365 with OneDrive</strong> — if you're already using M365, OneDrive syncs automatically</li>
+      <li><strong>Google Workspace with Drive</strong> — same idea for Google users</li>
+      <li><strong>Acronis Cyber Protect</strong> — more robust for businesses needing full system backups</li>
+    </ul>
+
+    <h2>Don't Forget to Test Your Backups</h2>
+    <p>A backup you've never tested is a backup you can't trust. At least once a quarter, actually restore a file from your backup system and confirm it works. Many businesses discover their backups were silently failing only when they desperately need them.</p>
+
+    <h2>What To Do Right Now</h2>
+    <ul>
+      <li>Audit what data your business actually has and where it lives</li>
+      <li>Set up an automatic cloud backup this week — don't rely on manual backups</li>
+      <li>Buy an external drive and back up locally as well</li>
+      <li>Document your backup process so someone else could follow it</li>
+      <li>Schedule a quarterly test restore to confirm everything works</li>
+    </ul>
+
+    <p>Need help setting up a backup system that actually works? Castle Data Partners sets up reliable, automated backup solutions for small businesses across New York — starting from scratch or fixing a system that isn't working.</p>
+
+  </div>
+
+  <hr class="post-divider" />
+  <p style="font-size:0.85rem;color:var(--muted);">Ready to protect your business data? <a href="../contact.html">Get in touch</a> — we'll build you a backup plan that fits your budget.</p>
+
+</div>
+
+<footer>
+  <span>© 2026 Rinaldo Castillo · Castle Data Partners LLC. All rights reserved.</span>
+  <div class="footer-links">
+    <a href="../aboutme.html">About Me</a>
+    <a href="../blog.html" class="active">Blog</a>
+    <a href="../index.html">Castle Data Partners</a>
+    <a href="../contact.html">Contact</a>
+  </div>
+</footer>
+
+<style>
+@media (max-width: 768px) {
+  body { overflow-x: hidden; }
+
+  /* ── Nav ── */
+  nav {
+    padding: 10px 16px;
+    height: auto;
+    min-height: 60px;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .nav-links {
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+  .nav-links li a { font-size: 0.76rem; }
+
+  /* ── Post content ── */
+  .post-wrap { padding: 32px 20px 64px; }
+  .post-cover img { max-width: 100%; height: auto; }
+
+  /* ── Footer ── */
+  footer {
+    padding: 20px 20px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .footer-links { flex-wrap: wrap; gap: 14px; }
+}
+</style>
+</body>
+</html>

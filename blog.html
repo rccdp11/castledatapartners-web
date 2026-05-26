@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog – Rinaldo Castillo</title>
+  <link rel="icon" href="TechCrestDark.png" type="image/png">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: #ffffff;
+      color: #2d2d2d;
+      line-height: 1.6;
+    }
+    a { text-decoration: none; color: inherit; }
+
+    :root {
+      --blue: #2979ff;
+      --border: #dde1e7;
+      --muted: #888;
+      --bg2: #f4f6f8;
+    }
+
+    /* ── Navbar ───────────────────────────────────────────────── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 48px;
+      height: 68px;
+      background: #ffffff;
+      border-bottom: 1px solid var(--border);
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #1e1e1e;
+    }
+    .nav-logo .logo-icon {
+      width: 40px; height: 40px;
+      background: var(--blue);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: 1rem; color: #fff;
+      flex-shrink: 0;
+    }
+    .nav-logo .logo-last { color: var(--muted); font-weight: 400; }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      list-style: none;
+    }
+    .nav-links li a {
+      font-size: 0.9rem;
+      color: #666;
+      transition: color .2s;
+    }
+    .nav-links li a:hover { color: #1e1e1e; }
+    .nav-links li a.active { color: #1e1e1e; font-weight: 600; }
+    .nav-links li a.nav-company { color: var(--blue); font-weight: 600; }
+    .nav-links li a.nav-company:hover { color: #1a5fcc; }
+
+    /* ── Page Header ──────────────────────────────────────────── */
+    .page-header {
+      padding: 64px 64px 48px;
+      border-bottom: 1px solid var(--border);
+    }
+    .page-header-label {
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 12px;
+    }
+    .page-header h1 {
+      font-size: clamp(2.4rem, 5vw, 3.6rem);
+      font-weight: 800;
+      color: #1e1e1e;
+      line-height: 1.1;
+    }
+    .page-header-desc {
+      font-size: 0.95rem;
+      color: #666;
+      margin-top: 14px;
+      max-width: 480px;
+    }
+
+    /* ── Filter Bar ───────────────────────────────────────────── */
+    .filter-bar {
+      padding: 24px 64px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      border-bottom: 1px solid var(--border);
+      background: var(--bg2);
+    }
+    .filter-btn {
+      padding: 6px 16px;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: 1.5px solid var(--border);
+      background: #fff;
+      color: #555;
+      transition: all .2s;
+      font-family: inherit;
+    }
+    .filter-btn:hover,
+    .filter-btn.active {
+      background: var(--blue);
+      border-color: var(--blue);
+      color: #fff;
+    }
+
+    /* ── Blog Grid ────────────────────────────────────────────── */
+    .blog-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      padding: 56px 64px;
+      gap: 48px;
+    }
+    @media (max-width: 768px) { .blog-grid { grid-template-columns: 1fr; padding: 32px 24px; } }
+
+    /* ── Post Card ────────────────────────────────────────────── */
+    .post-card {
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
+      transition: opacity .2s;
+    }
+    .post-card:hover { opacity: 0.85; }
+    .post-card-image-wrap {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 18px;
+      background: var(--bg2);
+    }
+    .post-card-image-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform .3s;
+    }
+    .post-card:hover .post-card-image-wrap img { transform: scale(1.03); }
+    .post-card-category {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      background: #fff;
+      color: #1e1e1e;
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 4px;
+      letter-spacing: 0.03em;
+    }
+    .post-card-date {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+    .post-card-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #1e1e1e;
+      line-height: 1.4;
+    }
+    .post-card:hover .post-card-title { color: var(--blue); }
+
+    /* ── Substack CTA ────────────────────────────────────────── */
+    .substack-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 16px;
+      padding: 10px 22px;
+      background: var(--blue);
+      color: #fff;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: background .2s;
+    }
+    .substack-cta:hover { background: #1a5fcc; color: #fff; }
+
+    /* ── Skeleton loader ──────────────────────────────────────── */
+    .skeleton {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .skeleton-img {
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      border-radius: 10px;
+      background: linear-gradient(90deg, #eee 25%, #f5f5f5 50%, #eee 75%);
+      background-size: 200% 100%;
+      animation: shimmer 1.4s infinite;
+    }
+    .skeleton-line {
+      height: 14px;
+      border-radius: 6px;
+      background: linear-gradient(90deg, #eee 25%, #f5f5f5 50%, #eee 75%);
+      background-size: 200% 100%;
+      animation: shimmer 1.4s infinite;
+    }
+    .skeleton-line.short { width: 40%; }
+    .skeleton-line.long  { width: 80%; }
+    @keyframes shimmer { to { background-position: -200% 0; } }
+
+    /* ── Empty State ──────────────────────────────────────────── */
+    .empty-state {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 80px 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    /* ── Footer ───────────────────────────────────────────────── */
+    footer {
+      background: #1e1e1e;
+      border-top: 1px solid #333;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 24px 64px;
+      font-size: 0.82rem;
+      color: #aaa;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .footer-links { display: flex; gap: 24px; }
+    .footer-links a { color: #aaa; transition: color .2s; }
+    .footer-links a:hover { color: #fff; }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════════════════════
+     NAVBAR
+═══════════════════════════════════════════════════════════════ -->
+<nav>
+  <a href="aboutme.html" class="nav-logo">
+    <div class="logo-icon">R</div>
+    <span>Rinaldo <span class="logo-last">Castillo</span></span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="aboutme.html">About Me</a></li>
+    <li><a href="resume.html">Resume</a></li>
+    <li><a href="portfolio.html">Portfolio</a></li>
+    <li><a href="blog.html" class="active">Blog</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="index.html" class="nav-company">Castle Data Partners</a></li>
+  </ul>
+</nav>
+
+<!-- ══════════════════════════════════════════════════════════════
+     PAGE HEADER
+═══════════════════════════════════════════════════════════════ -->
+<div class="page-header">
+  <p class="page-header-label">Thoughts & Guides</p>
+  <h1>Blog</h1>
+  <p class="page-header-desc">Tech tips, industry news, and honest advice for homes and small businesses.</p>
+  <a href="https://castledatapartners.substack.com" target="_blank" rel="noopener" class="substack-cta">
+    Subscribe on Substack →
+  </a>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     FILTER BAR
+═══════════════════════════════════════════════════════════════ -->
+<div class="filter-bar">
+  <button class="filter-btn active" onclick="filterPosts('all', this)">All Posts</button>
+  <button class="filter-btn" onclick="filterPosts('IT Tips & Tricks', this)">IT Tips &amp; Tricks</button>
+  <button class="filter-btn" onclick="filterPosts('Small Business IT', this)">Small Business IT</button>
+  <button class="filter-btn" onclick="filterPosts('Cybersecurity', this)">Cybersecurity</button>
+  <button class="filter-btn" onclick="filterPosts('Smart Home & Gadgets', this)">Smart Home &amp; Gadgets</button>
+  <button class="filter-btn" onclick="filterPosts('Industry News', this)">Industry News</button>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     BLOG GRID
+     To add a new post: copy one of the post-card blocks below,
+     update the href, image, category, date, and title.
+═══════════════════════════════════════════════════════════════ -->
+<div class="blog-grid" id="blog-grid">
+  <!-- Posts are loaded from Substack RSS feed via JavaScript below -->
+  <div class="skeleton"><div class="skeleton-img"></div><div class="skeleton-line short"></div><div class="skeleton-line long"></div></div>
+  <div class="skeleton"><div class="skeleton-img"></div><div class="skeleton-line short"></div><div class="skeleton-line long"></div></div>
+  <div class="skeleton"><div class="skeleton-img"></div><div class="skeleton-line short"></div><div class="skeleton-line long"></div></div>
+  <div class="skeleton"><div class="skeleton-img"></div><div class="skeleton-line short"></div><div class="skeleton-line long"></div></div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     FOOTER
+═══════════════════════════════════════════════════════════════ -->
+<footer>
+  <span>© 2026 Castle Data Partners LLC. All rights reserved.</span>
+  <div class="footer-links">
+    <a href="aboutme.html">About Me</a>
+    <a href="resume.html">Resume</a>
+    <a href="index.html">Castle Data Partners</a>
+    <a href="contact.html">Contact</a>
+  </div>
+</footer>
+
+<script>
+  const SUBSTACK = 'https://castledatapartners.substack.com';
+  const RSS_API  = 'https://api.rss2json.com/v1/api.json?rss_url=' + encodeURIComponent(SUBSTACK + '/feed');
+
+  const DEFAULT_IMG = 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&q=80';
+
+  function formatDate(dateStr) {
+    return new Date(dateStr).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+  }
+
+  function buildCard(item) {
+    const img       = item.thumbnail || DEFAULT_IMG;
+    const category  = (item.categories && item.categories[0]) || 'Blog';
+    const date      = formatDate(item.pubDate);
+    return `
+      <a href="${item.link}" target="_blank" rel="noopener" class="post-card" data-category="${category}">
+        <div class="post-card-image-wrap">
+          <img src="${img}" alt="${item.title}" loading="lazy"
+               onerror="this.src='${DEFAULT_IMG}'" />
+          <span class="post-card-category">${category}</span>
+        </div>
+        <div class="post-card-date">${date}</div>
+        <div class="post-card-title">${item.title}</div>
+      </a>`;
+  }
+
+  async function loadPosts() {
+    const grid = document.getElementById('blog-grid');
+    try {
+      const res  = await fetch(RSS_API);
+      const data = await res.json();
+
+      if (data.status !== 'ok' || !data.items || data.items.length === 0) {
+        grid.innerHTML = `
+          <div class="empty-state">
+            No posts yet — the first one is coming soon!<br>
+            <a href="${SUBSTACK}" target="_blank" rel="noopener" class="substack-cta" style="margin-top:20px;">
+              Follow on Substack →
+            </a>
+          </div>`;
+        return;
+      }
+
+      grid.innerHTML = data.items.map(buildCard).join('');
+
+    } catch (err) {
+      grid.innerHTML = `
+        <div class="empty-state">
+          Could not load posts right now.<br>
+          <a href="${SUBSTACK}" target="_blank" rel="noopener" class="substack-cta" style="margin-top:20px;">
+            Read on Substack →
+          </a>
+        </div>`;
+    }
+  }
+
+  // ── Filter (works with dynamically loaded cards) ─────────────
+  function filterPosts(category, btn) {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.post-card').forEach(card => {
+      const match = category === 'all' || card.dataset.category === category;
+      card.style.display = match ? 'flex' : 'none';
+    });
+  }
+
+  loadPosts();
+</script>
+
+<style>
+@media (max-width: 768px) {
+  body { overflow-x: hidden; }
+
+  /* ── Nav ── */
+  nav {
+    padding: 10px 16px;
+    height: auto;
+    min-height: 60px;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .nav-links {
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+  .nav-links li a { font-size: 0.76rem; }
+
+  /* ── Page header ── */
+  .page-header { padding: 40px 20px 32px; }
+
+  /* ── Filter bar ── */
+  .filter-bar { padding: 16px 20px; }
+
+  /* ── Blog grid ── already has @media 768px, just tighten footer ── */
+
+  /* ── Footer ── */
+  footer {
+    padding: 20px 20px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+}
+</style>
+</body>
+</html>

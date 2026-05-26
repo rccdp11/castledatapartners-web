@@ -1,0 +1,1093 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rinaldo Castillo – Resume</title>
+  <link rel="icon" href="TechCrestDark.png" type="image/png">
+  <style>
+    /* ── Reset & Base ─────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: #ffffff;
+      color: #2d2d2d;
+      line-height: 1.6;
+    }
+    a { text-decoration: none; color: inherit; }
+
+    /* ── CSS Variables ────────────────────────────────────────── */
+    :root {
+      --blue: #2979ff;
+      --dark: #f4f6f8;
+      --dark2: #eef0f3;
+      --card: #ffffff;
+      --border: #dde1e7;
+      --muted: #888;
+      --white: #1e1e1e;
+    }
+
+    /* ── Navbar ───────────────────────────────────────────────── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 48px;
+      height: 68px;
+      background: #ffffff;
+      border-bottom: 1px solid var(--border);
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #1e1e1e;
+    }
+    .nav-logo .logo-icon {
+      width: 40px; height: 40px;
+      background: var(--blue);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: 1rem; color: #fff;
+      flex-shrink: 0;
+    }
+    .nav-logo .logo-first { color: #1e1e1e; }
+    .nav-logo .logo-last { color: var(--muted); font-weight: 400; }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      list-style: none;
+    }
+    .nav-links li a {
+      font-size: 0.9rem;
+      color: #666;
+      transition: color .2s;
+    }
+    .nav-links li a:hover { color: #1e1e1e; }
+    .nav-links li a.active { color: #1e1e1e; font-weight: 600; }
+    .nav-links li a.nav-company {
+      color: var(--blue);
+      font-weight: 600;
+    }
+    .nav-links li a.nav-company:hover { color: #1a5fcc; }
+
+    /* ── Shared Section Styles ────────────────────────────────── */
+    section { padding: 80px 64px; }
+    .section-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #1e1e1e;
+      margin-bottom: 8px;
+      padding-bottom: 10px;
+      position: relative;
+      display: inline-block;
+    }
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 36px; height: 2px;
+      background: var(--blue);
+    }
+
+    /* ── Hero ─────────────────────────────────────────────────── */
+    #about {
+      min-height: calc(100vh - 68px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 60px 64px;
+      background: #ffffff;
+    }
+    .hero-inner {
+      display: flex;
+      align-items: center;
+      gap: 80px;
+      max-width: 1100px;
+      width: 100%;
+    }
+    .hero-photo-wrap {
+      flex-shrink: 0;
+      position: relative;
+      width: 340px; height: 340px;
+    }
+    .hero-photo-wrap::before {
+      content: '';
+      position: absolute;
+      inset: -14px;
+      border-radius: 50%;
+      background: conic-gradient(var(--blue) 0deg 200deg, #d8dce2 200deg 360deg);
+      z-index: 0;
+    }
+    .hero-photo-wrap::after {
+      content: '';
+      position: absolute;
+      inset: -6px;
+      border-radius: 50%;
+      background: #ffffff;
+      z-index: 1;
+    }
+    .hero-photo {
+      position: relative;
+      z-index: 2;
+      width: 100%; height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      background: #dde1e7;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .hero-photo svg { width: 60%; height: 60%; opacity: 0.25; }
+    .hero-content { flex: 1; }
+    .hero-label {
+      font-size: 0.9rem;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+      margin-bottom: 10px;
+    }
+    .hero-name {
+      font-size: clamp(2.4rem, 5vw, 3.2rem);
+      font-weight: 800;
+      color: #1e1e1e;
+      margin-bottom: 20px;
+      line-height: 1.1;
+    }
+    .hero-bio {
+      font-size: 0.95rem;
+      color: #666;
+      max-width: 520px;
+      margin-bottom: 36px;
+      line-height: 1.8;
+    }
+    .hero-buttons { display: flex; gap: 16px; flex-wrap: wrap; }
+    .btn {
+      padding: 12px 28px;
+      border-radius: 50px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all .2s;
+      letter-spacing: 0.02em;
+    }
+    .btn-primary {
+      background: transparent;
+      border: 2px solid var(--blue);
+      color: var(--white);
+    }
+    .btn-primary:hover { background: var(--blue); }
+    .btn-secondary {
+      background: transparent;
+      border: 2px solid #555;
+      color: var(--white);
+    }
+    .btn-secondary:hover { border-color: var(--white); }
+
+    /* ── What I Do ────────────────────────────────────────────── */
+    #what-i-do { background: #ffffff; }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 32px;
+      margin-top: 40px;
+    }
+    .service-card {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 28px 24px;
+      display: flex;
+      gap: 18px;
+      align-items: flex-start;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+      transition: box-shadow .2s, transform .2s;
+    }
+    .service-card:hover {
+      box-shadow: 0 4px 16px rgba(41,121,255,0.1);
+      transform: translateY(-2px);
+    }
+    .service-icon {
+      width: 44px; height: 44px;
+      flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--blue);
+      background: #eef4ff;
+      border-radius: 10px;
+    }
+    .service-icon svg { width: 22px; height: 22px; }
+    .service-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #1e1e1e;
+      margin-bottom: 8px;
+    }
+    .service-desc { font-size: 0.875rem; color: #666; line-height: 1.7; }
+
+    /* ── Resume Section ───────────────────────────────────────── */
+    #resume { background: #ffffff; }
+    .resume-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+    .resume-exp-badge {
+      font-size: 0.875rem;
+      color: var(--muted);
+      padding-top: 8px;
+    }
+    .resume-big-title {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 800;
+      color: var(--white);
+      line-height: 1;
+    }
+    .resume-divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 32px 0 56px;
+    }
+
+    /* ── Timeline Sub-section ─────────────────────────────────── */
+    .resume-subsection { margin-bottom: 64px; }
+    .resume-subsection:last-child { margin-bottom: 0; }
+    .timeline-section-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #1e1e1e;
+      padding-bottom: 10px;
+      position: relative;
+      display: inline-block;
+      margin-bottom: 32px;
+    }
+    .timeline-section-title::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 36px; height: 2px;
+      background: var(--blue);
+    }
+
+    /* ── Full-width Timeline Entry ────────────────────────────── */
+    .timeline-entry {
+      display: flex;
+      gap: 28px;
+      margin-bottom: 28px;
+    }
+    .timeline-entry:last-child { margin-bottom: 0; }
+
+    /* Left column: date badge + vertical line */
+    .timeline-left {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      flex-shrink: 0;
+      width: 140px;
+    }
+    .timeline-year {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--blue);
+      border: 1.5px solid var(--blue);
+      border-radius: 50px;
+      padding: 4px 14px;
+      white-space: nowrap;
+      text-align: center;
+    }
+    .timeline-line {
+      width: 1px;
+      flex: 1;
+      min-height: 24px;
+      background: var(--border);
+      margin-top: 10px;
+    }
+
+    /* Right column: full-width card */
+    .timeline-right { flex: 1; }
+    .timeline-org {
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .timeline-org-dot {
+      width: 4px; height: 4px;
+      border-radius: 50%;
+      background: var(--border);
+    }
+    .timeline-card {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--blue);
+      border-radius: 6px;
+      padding: 20px 24px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+    }
+    .timeline-card-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #1e1e1e;
+      margin-bottom: 10px;
+    }
+    .timeline-card-summary {
+      font-size: 0.875rem;
+      color: #555;
+      line-height: 1.75;
+      margin-bottom: 0;
+    }
+
+    /* ── Expandable Bullets ───────────────────────────────────── */
+    details { margin-top: 14px; }
+    details summary {
+      cursor: pointer;
+      font-size: 0.82rem;
+      color: var(--blue);
+      user-select: none;
+      list-style: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: color .2s;
+    }
+    details summary::-webkit-details-marker { display: none; }
+    details summary::before {
+      content: '▸';
+      font-size: 0.7rem;
+      transition: transform .2s;
+      display: inline-block;
+    }
+    details[open] summary::before { transform: rotate(90deg); }
+    details summary:hover { color: #5a9fff; }
+    details[open] summary .summary-text { font-size: 0; }
+    details[open] summary .summary-text::after { content: 'Hide details'; font-size: 0.82rem; }
+    details:not([open]) summary .summary-text { font-size: 0; }
+    details:not([open]) summary .summary-text::after { content: 'Show details'; font-size: 0.82rem; }
+    details .bullet-list {
+      margin-top: 14px;
+      padding-left: 0;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+    }
+    details .bullet-list li {
+      font-size: 0.845rem;
+      color: #666;
+      line-height: 1.7;
+      padding-left: 18px;
+      position: relative;
+    }
+    details .bullet-list li::before {
+      content: '–';
+      position: absolute;
+      left: 0;
+      color: var(--blue);
+      font-weight: 700;
+    }
+
+    /* ── Certifications ───────────────────────────────────────── */
+    #certificates { background: #ffffff; padding-top: 0; }
+    .cert-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-top: 32px;
+    }
+    @media (max-width: 640px) { .cert-grid { grid-template-columns: 1fr; } }
+    .cert-card {
+      display: flex;
+      align-items: center;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .cert-logo {
+      width: 110px; min-height: 90px;
+      background: #eef0f3;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--blue);
+      flex-shrink: 0;
+      border-right: 1px solid var(--border);
+      padding: 16px;
+      font-family: monospace;
+      text-align: center;
+      line-height: 1.4;
+    }
+    .cert-info { padding: 16px 20px; }
+    .cert-name {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: #1e1e1e;
+      margin-bottom: 4px;
+    }
+    .cert-issuer { font-size: 0.8rem; color: var(--muted); margin-bottom: 4px; }
+    .cert-date { font-size: 0.78rem; color: var(--muted); }
+
+    /* ── Languages ────────────────────────────────────────────── */
+    #languages { background: #ffffff; padding-top: 0; }
+    .lang-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+      margin-top: 32px;
+    }
+    .lang-card {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 24px 28px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+    }
+    .lang-flag {
+      font-size: 2.2rem;
+      line-height: 1;
+      flex-shrink: 0;
+    }
+    .lang-info {}
+    .lang-name {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #1e1e1e;
+      margin-bottom: 4px;
+    }
+    .lang-level {
+      font-size: 0.82rem;
+      color: var(--blue);
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    .lang-note { font-size: 0.8rem; color: var(--muted); }
+
+    /* ── Skills ───────────────────────────────────────────────── */
+    #skills { background: #ffffff; padding-top: 32px; padding-bottom: 80px; }
+    .skills-cols {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      margin-top: 8px;
+    }
+    @media (max-width: 640px) { .skills-cols { grid-template-columns: 1fr; } }
+    .skill-item { margin-bottom: 22px; }
+    .skill-header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+    .skill-name { font-size: 0.88rem; font-weight: 600; color: #1e1e1e; }
+    .skill-pct { font-size: 0.82rem; color: var(--muted); }
+    .skill-bar {
+      height: 4px;
+      background: #dde1e7;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .skill-fill {
+      height: 100%;
+      background: var(--blue);
+      border-radius: 4px;
+    }
+
+    /* ── Footer ───────────────────────────────────────────────── */
+    footer {
+      background: #1e1e1e;
+      border-top: 1px solid #333;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 24px 64px;
+      font-size: 0.82rem;
+      color: #aaa;
+    }
+    .footer-social a { color: #aaa; }
+    .footer-social a:hover { color: #fff; }
+    .footer-social { display: flex; gap: 24px; }
+    .footer-social a { transition: color .2s; }
+    .footer-social a:hover { color: var(--white); }
+
+    /* ── Back to top ──────────────────────────────────────────── */
+    .back-to-top {
+      position: fixed;
+      bottom: 24px; right: 20px;
+      width: 40px; height: 40px;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+      color: #888;
+      font-size: 1rem;
+      transition: all .2s;
+      z-index: 90;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    .back-to-top:hover { color: #1e1e1e; border-color: #aaa; }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════════════════════
+     NAVBAR
+═══════════════════════════════════════════════════════════════ -->
+<nav>
+  <div class="nav-logo">
+    <div class="logo-icon">R</div>
+    <span><span class="logo-first">Rinaldo</span> <span class="logo-last">Castillo</span></span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="aboutme.html">About Me</a></li>
+    <li><a href="resume.html" class="active">Resume</a></li>
+    <li><a href="portfolio.html">Portfolio</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="index.html" class="nav-company">Castle Data Partners</a></li>
+  </ul>
+</nav>
+
+<!-- ══════════════════════════════════════════════════════════════
+     HERO
+═══════════════════════════════════════════════════════════════ -->
+<section id="about">
+  <div class="hero-inner">
+    <div class="hero-photo-wrap">
+      <div class="hero-photo">
+        <img id="hero-photo" src="profile1.png" alt="Rinaldo Castillo"
+             style="width:100%;height:100%;object-fit:cover;object-position:center top;border-radius:50%;transition:opacity 0.7s ease;">
+      </div>
+    </div>
+
+    <div class="hero-content">
+      <p class="hero-label">IT &amp; Field Service Specialist</p>
+      <h1 class="hero-name">Rinaldo Castillo</h1>
+      <p class="hero-bio">
+        IT professional with 15+ years resolving hardware, software, and network
+        issues across enterprise, clinical, and retail environments — including
+        phone-based helpdesk, onsite field service, and enterprise deployment.
+        CompTIA A+ certified with a consistent track record of first-call resolution
+        and calm, precise support under pressure.
+      </p>
+      <div class="hero-buttons">
+        <a href="Rinaldo_Castillo_Resume.pdf" download class="btn btn-primary">Download CV</a>
+        <a href="contact.html" class="btn btn-secondary">Contact</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════════
+     WHAT I DO
+═══════════════════════════════════════════════════════════════ -->
+<section id="what-i-do">
+  <h2 class="section-title">What I Do</h2>
+  <div class="services-grid">
+
+    <div class="service-card">
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>
+        </svg>
+      </div>
+      <div>
+        <h3 class="service-title">Helpdesk &amp; Remote Support</h3>
+        <p class="service-desc">Phone-based and remote desktop support for Windows 10/11, Active Directory, MS Office 365, and VPN — with consistent first-call resolution across enterprise and clinical environments.</p>
+      </div>
+    </div>
+
+    <div class="service-card">
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 010 14.14M4.93 4.93a10 10 0 000 14.14M15.54 8.46a5 5 0 010 7.07M8.46 8.46a5 5 0 000 7.07"/>
+        </svg>
+      </div>
+      <div>
+        <h3 class="service-title">Network Infrastructure</h3>
+        <p class="service-desc">Configuration and deployment of Cisco Meraki switches, access points, Palo Alto GlobalProtect firewalls, and VLAN infrastructure — across 20+ enterprise office and retail site builds.</p>
+      </div>
+    </div>
+
+    <div class="service-card">
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/><path d="M9 15l2 2 4-4"/>
+        </svg>
+      </div>
+      <div>
+        <h3 class="service-title">Field Service &amp; Deployment</h3>
+        <p class="service-desc">On-site installation, calibration, and troubleshooting of enterprise hardware — POS systems, clinical diagnostic imaging equipment, and full office infrastructure — across the East Coast.</p>
+      </div>
+    </div>
+
+    <div class="service-card">
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/>
+        </svg>
+      </div>
+      <div>
+        <h3 class="service-title">Device Management &amp; MDM</h3>
+        <p class="service-desc">JAMF administration for Mac fleet management, MDM provisioning, policy enforcement, and device imaging across multi-OS enterprise environments using Intune and Active Directory.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════════
+     RESUME
+═══════════════════════════════════════════════════════════════ -->
+<section id="resume">
+  <div class="resume-header">
+    <h2 class="resume-big-title">Resume</h2>
+    <span class="resume-exp-badge">15+ Years of Experience</span>
+  </div>
+  <hr class="resume-divider" />
+
+  <!-- ── Experience ─────────────────────────────────────────── -->
+  <div class="resume-subsection">
+    <h3 class="timeline-section-title">Experience</h3>
+
+    <!-- TD Synnex – Advanced Field Engineer -->
+    <div class="timeline-entry">
+      <div class="timeline-left">
+        <span class="timeline-year">2021 – 2026</span>
+        <div class="timeline-line"></div>
+      </div>
+      <div class="timeline-right">
+        <div class="timeline-org">
+          TD Synnex
+          <span class="timeline-org-dot"></span>
+          NY, NJ, CT Tri-State Area
+        </div>
+        <div class="timeline-card">
+          <div class="timeline-card-title">Advanced Field Engineer / Service Desk Contractor</div>
+          <p class="timeline-card-summary">
+            Delivered enterprise IT field support across 50+ client sites — law firms, retail chains, and data centers — achieving 95%+ first-contact resolution and eliminating escalations while managing full SLA compliance.
+          </p>
+          <details open>
+            <summary><span class="summary-text"></span></summary>
+            <ul class="bullet-list">
+              <li>Resolved 95%+ of assigned incidents at first-contact across 50+ enterprise client sites including law firms, retail chains, and data centers — eliminating escalations and reducing client downtime.</li>
+              <li>Configured and deployed POS systems, Cisco Meraki switches, Palo Alto GlobalProtect firewalls, and VLAN infrastructure during 20+ new store and office setups across the tri-state area.</li>
+              <li>Managed a rolling queue of service requests using Salesforce, ServiceMax, and TrueContext — maintaining accurate case documentation, daily driving logs, mileage reports, and SLA compliance.</li>
+              <li>Performed remote desktop (RDP) and phone-based troubleshooting for connectivity, performance, and application issues on Windows 10 laptops, desktops, and peripheral hardware.</li>
+              <li>Supported JAMF-managed Mac fleet at Procore Inc. (Wall St, NY), resolving 30+ user issues weekly via JIRA and provisioning loaner devices, peripherals, and MDM-enrolled endpoints.</li>
+              <li>Maintained and submitted detailed expense reports covering mileage, fuel, and travel-related costs; recovered and tracked parts packages daily from FedEx Ground locations.</li>
+              <li>Installed, deinstalled, and replaced enterprise networking hardware — Meraki APs, switches, Palo Alto firewalls — and oversaw software updates, firmware upgrades, and IT infrastructure documentation.</li>
+            </ul>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <!-- TD Synnex – Philips Digital Pathology -->
+    <div class="timeline-entry">
+      <div class="timeline-left">
+        <span class="timeline-year">2024 – 2026</span>
+        <div class="timeline-line"></div>
+      </div>
+      <div class="timeline-right">
+        <div class="timeline-org">
+          TD Synnex
+          <span class="timeline-org-dot"></span>
+          Nationwide
+        </div>
+        <div class="timeline-card">
+          <div class="timeline-card-title">Field Service Engineer – Philips Digital Pathology (Contract)</div>
+          <p class="timeline-card-summary">
+            Reduced scanner downtime across high-volume clinical labs by installing and calibrating Philips Ultrafast and SG300 diagnostic imaging systems — traveling extensively across NY, NJ, CT, PA, MD, and VA.
+          </p>
+          <details open>
+            <summary><span class="summary-text"></span></summary>
+            <ul class="bullet-list">
+              <li>Reduced scanner downtime in high-volume clinical labs by performing on-site installation, calibration, and rapid troubleshooting of Philips Ultrafast and SG300 diagnostic imaging systems.</li>
+              <li>Traveled extensively across the East Coast — including NY, NJ, CT, PA, MD, and VA — via both flights and long-distance driving to meet client SLAs and deployment schedules.</li>
+              <li>Coordinated multi-state service schedules independently, managing flight bookings, overnight stays, and vehicle travel to ensure timely on-site support for clinical laboratory clients.</li>
+              <li>Delivered technical training to laboratory staff on proper scanner operation, improving self-sufficiency and reducing repeat support calls by an estimated 30%.</li>
+              <li>Conducted hardware and software calibrations to maintain high-quality clinical diagnostic imaging standards across all client laboratory environments.</li>
+              <li>Documented all service activity in Salesforce and ServiceMax, ensuring full case traceability and audit-ready reporting for clinical compliance requirements.</li>
+            </ul>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <!-- Procore Helpdesk -->
+    <div class="timeline-entry">
+      <div class="timeline-left">
+        <span class="timeline-year">2022 – 2023</span>
+        <div class="timeline-line"></div>
+      </div>
+      <div class="timeline-right">
+        <div class="timeline-org">
+          TD Synnex (Contractor for Procore Inc.)
+          <span class="timeline-org-dot"></span>
+          Wall Street, New York, NY
+        </div>
+        <div class="timeline-card">
+          <div class="timeline-card-title">IT Support / Helpdesk</div>
+          <p class="timeline-card-summary">
+            Provided JIRA-based helpdesk support and JAMF Mac fleet administration for a fast-paced financial district office — managing hardware, access control, and infrastructure refreshes across a multi-OS environment.
+          </p>
+          <details open>
+            <summary><span class="summary-text"></span></summary>
+            <ul class="bullet-list">
+              <li>Provided IT helpdesk support through a JIRA ticketing system, troubleshooting and resolving hardware, software, and access issues for office employees in a fast-paced financial district environment.</li>
+              <li>Assisted with network hardware installation and configuration including switches and access points, ensuring seamless connectivity across the office environment.</li>
+              <li>Managed IT inventory, provisioning loaner devices, peripherals, and accessories; maintained accurate records of equipment issued and returned by office patrons.</li>
+              <li>Supported JAMF administration for Mac device management, policy enforcement, and MDM provisioning across a multi-OS office fleet.</li>
+              <li>Installed, deinstalled, and replaced Cisco Meraki switches, Meraki access points, and Palo Alto GlobalProtect firewalls as part of scheduled IT infrastructure refresh projects.</li>
+              <li>Utilized Google Workspace and Microsoft 365 to manage collaboration, access control, and productivity tools across the office environment.</li>
+            </ul>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <!-- Unisys – Dell Field Technician -->
+    <div class="timeline-entry">
+      <div class="timeline-left">
+        <span class="timeline-year">2013 – 2014</span>
+        <div class="timeline-line"></div>
+      </div>
+      <div class="timeline-right">
+        <div class="timeline-org">
+          Unisys Technical Resources
+          <span class="timeline-org-dot"></span>
+          NY, NJ, CT
+        </div>
+        <div class="timeline-card">
+          <div class="timeline-card-title">Dell Driving Field Technician</div>
+          <p class="timeline-card-summary">
+            Resolved 25+ desktop, laptop, and printer issues weekly across corporate, business, and residential client sites — managing up to 200 miles of daily travel with full administrative accountability.
+          </p>
+          <details open>
+            <summary><span class="summary-text"></span></summary>
+            <ul class="bullet-list">
+              <li>Resolved 25+ desktop, laptop, and printer issues weekly across corporate, business, and residential client sites while managing up to 200 miles of daily travel.</li>
+              <li>Maintained a detailed daily repair and replacement parts list; recovered and tracked hardware packages daily from FedEx Ground locations to ensure uninterrupted service delivery.</li>
+              <li>Accurately maintained daily driving and mileage logs as well as client service orders, ensuring full administrative accountability for each dispatched visit.</li>
+              <li>Assisted financial institutions and office personnel with hardware and software problems, providing hands-on troubleshooting and owning desktop and network issues through to full resolution.</li>
+            </ul>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <!-- Best Buy – Geek Squad -->
+    <div class="timeline-entry">
+      <div class="timeline-left">
+        <span class="timeline-year">2008 – 2013</span>
+        <div class="timeline-line"></div>
+      </div>
+      <div class="timeline-right">
+        <div class="timeline-org">
+          Best Buy
+          <span class="timeline-org-dot"></span>
+          Bronx, NY
+        </div>
+        <div class="timeline-card">
+          <div class="timeline-card-title">Geek Squad Assistant Supervisor</div>
+          <p class="timeline-card-summary">
+            Performed 100+ hardware and software repairs per week while supervising a 7-person service team — training 20+ technicians and managing high-volume customer escalations in English and Spanish.
+          </p>
+          <details open>
+            <summary><span class="summary-text"></span></summary>
+            <ul class="bullet-list">
+              <li>Performed 100+ hardware and software repairs per week while supervising a 7-person service team — maintaining throughput and quality across a high-volume retail service desk.</li>
+              <li>Managed all incoming calls and customer escalations; resolved 25+ customer issues daily via in-person and phone triage, offering repair, return, or replacement solutions in English and Spanish.</li>
+              <li>Trained 20+ new technicians and computing sales associates on IT support procedures, diagnostic tools, and customer-facing communication standards.</li>
+              <li>Created detailed and meticulous support service tickets for entry into the repair queue, improving accuracy and handoff efficiency across the service team.</li>
+              <li>Troubleshot Windows, macOS, iOS, and Android systems — OS reinstalls, virus removal, hardware diagnostics, and software configuration — for walk-in and scheduled clients.</li>
+            </ul>
+          </details>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- end experience -->
+
+  <!-- ── Education ──────────────────────────────────────────── -->
+  <div class="resume-subsection">
+    <h3 class="timeline-section-title">Education</h3>
+
+    <div class="timeline-entry">
+      <div class="timeline-left">
+        <span class="timeline-year">2008</span>
+        <div class="timeline-line"></div>
+      </div>
+      <div class="timeline-right">
+        <div class="timeline-org">
+          PerScholas Institute
+          <span class="timeline-org-dot"></span>
+          Bronx, NY
+        </div>
+        <div class="timeline-card">
+          <div class="timeline-card-title">CompTIA A+ IT Technician Certification</div>
+          <p class="timeline-card-summary">
+            Completed 200+ hours of hands-on technical training covering networking, hardware, software, security, server infrastructure, virtualization, and mobile devices. Certified July 2008.
+          </p>
+          <details open>
+            <summary><span class="summary-text"></span></summary>
+            <ul class="bullet-list">
+              <li>200+ hours of structured coursework and lab training at PerScholas Institute, Bronx, NY.</li>
+              <li>Curriculum covered networking fundamentals, hardware repair, OS support, security, server management, virtualization, and mobile device support.</li>
+              <li>CompTIA A+ certification earned July 2008 — foundational credential for IT support and field service professionals.</li>
+            </ul>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-entry">
+      <div class="timeline-left">
+        <span class="timeline-year">2006</span>
+      </div>
+      <div class="timeline-right">
+        <div class="timeline-org">
+          EOC – Equal Opportunity Center
+          <span class="timeline-org-dot"></span>
+          Bronx, NY
+        </div>
+        <div class="timeline-card">
+          <div class="timeline-card-title">GED Diploma</div>
+          <p class="timeline-card-summary">
+            General Educational Development diploma completed October 2006 at the Equal Opportunity Center, Bronx, NY.
+          </p>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- end education -->
+</section>
+
+<!-- ══════════════════════════════════════════════════════════════
+     CERTIFICATIONS
+═══════════════════════════════════════════════════════════════ -->
+<section id="certificates">
+  <h2 class="section-title">Certifications</h2>
+  <div class="cert-grid">
+
+    <div class="cert-card">
+      <div class="cert-logo">CompTIA<br>A+</div>
+      <div class="cert-info">
+        <div class="cert-name">CompTIA A+ IT Technician</div>
+        <div class="cert-issuer">PerScholas Institute · Bronx, NY</div>
+        <div class="cert-date">July 2008 · 200+ Training Hours</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════════
+     LANGUAGES
+═══════════════════════════════════════════════════════════════ -->
+<section id="languages">
+  <h2 class="section-title">Languages</h2>
+  <div class="lang-grid">
+
+    <div class="lang-card">
+      <div class="lang-flag">🇺🇸</div>
+      <div class="lang-info">
+        <div class="lang-name">English</div>
+        <div class="lang-level">Native Proficiency</div>
+        <div class="lang-note">Full professional fluency · Customer support &amp; technical communication</div>
+      </div>
+    </div>
+
+    <div class="lang-card">
+      <div class="lang-flag">🇵🇷</div>
+      <div class="lang-info">
+        <div class="lang-name">Spanish</div>
+        <div class="lang-level">Native Proficiency</div>
+        <div class="lang-note">Full professional fluency · Bilingual client support &amp; staff training</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════════
+     SKILLS
+═══════════════════════════════════════════════════════════════ -->
+<section id="skills">
+  <div class="skills-cols">
+    <div>
+      <h3 class="timeline-section-title">Support &amp; OS Skills</h3>
+      <div style="margin-top: 28px;">
+        <div class="skill-item">
+          <div class="skill-header"><span class="skill-name">Windows 10/11 &amp; Active Directory</span><span class="skill-pct">95%</span></div>
+          <div class="skill-bar"><div class="skill-fill" style="width:95%"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-header"><span class="skill-name">Microsoft 365 &amp; Google Workspace</span><span class="skill-pct">95%</span></div>
+          <div class="skill-bar"><div class="skill-fill" style="width:95%"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-header"><span class="skill-name">macOS &amp; JAMF MDM</span><span class="skill-pct">85%</span></div>
+          <div class="skill-bar"><div class="skill-fill" style="width:85%"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-header"><span class="skill-name">JIRA / Salesforce / ServiceMax</span><span class="skill-pct">90%</span></div>
+          <div class="skill-bar"><div class="skill-fill" style="width:90%"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-header"><span class="skill-name">VPN / RDP / Remote Support</span><span class="skill-pct">90%</span></div>
+          <div class="skill-bar"><div class="skill-fill" style="width:90%"></div></div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <h3 class="timeline-section-title">Networking &amp; Hardware</h3>
+      <div style="margin-top: 28px;">
+        <div class="skill-item">
+          <div class="skill-header"><span class="skill-name">Hardware Repair &amp; Field Service</span><span class="skill-pct">95%</span></div>
+          <div class="skill-bar"><div class="skill-fill" style="width:95%"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-header"><span class="skill-name">Device Imaging &amp; Deployment</span><span class="skill-pct">90%</span></div>
+          <div class="skill-bar"><div class="skill-fill" style="width:90%"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-header"><span class="skill-name">Cisco Meraki &amp; VLAN Config</span><span class="skill-pct">85%</span></div>
+          <div class="skill-bar"><div class="skill-fill" style="width:85%"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-header"><span class="skill-name">Palo Alto GlobalProtect / VPN</span><span class="skill-pct">85%</span></div>
+          <div class="skill-bar"><div class="skill-fill" style="width:85%"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-header"><span class="skill-name">Printer Support (Local &amp; Network)</span><span class="skill-pct">90%</span></div>
+          <div class="skill-bar"><div class="skill-fill" style="width:90%"></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════════
+     FOOTER
+═══════════════════════════════════════════════════════════════ -->
+<footer id="contact">
+  <div class="footer-social">
+    <a href="https://linkedin.com/in/rinaldo-castillo" target="_blank" rel="noopener">LinkedIn</a>
+    <a href="mailto:RinaldoCastillo.ME@Gmail.com">Email</a>
+    <a href="https://castledatapartners.com" target="_blank" rel="noopener">Castle Data Partners</a>
+  </div>
+  <span>© 2026 Castle Data Partners LLC. All rights reserved.</span>
+</footer>
+
+<a href="#about" class="back-to-top" title="Back to top">&#8679;</a>
+
+<style>
+@media (max-width: 768px) {
+  body { overflow-x: hidden; }
+
+  /* ── Nav ── */
+  nav {
+    padding: 10px 16px;
+    height: auto;
+    min-height: 60px;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .nav-links {
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+  .nav-links li a { font-size: 0.76rem; }
+
+  /* ── Sections ── */
+  section { padding: 48px 20px; }
+
+  /* ── Hero ── */
+  #about {
+    padding: 40px 20px;
+    min-height: unset;
+  }
+  .hero-inner {
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+  }
+  .hero-photo-wrap {
+    width: 200px;
+    height: 200px;
+    margin: 0 auto;
+  }
+  .hero-content { text-align: center; }
+  .hero-buttons { justify-content: center; }
+
+  /* ── Resume header ── */
+  .resume-header {
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  /* ── Timeline ── */
+  .timeline-entry { gap: 14px; }
+  .timeline-left { width: 84px; }
+  .timeline-year { font-size: 0.68rem; padding: 3px 8px; }
+
+  /* ── Cert & skills: already have breakpoints; just ensure padding ── */
+  #certificates { padding: 40px 20px; }
+  #languages { padding: 40px 20px; }
+  #skills { padding: 32px 20px 60px; }
+
+  /* ── Footer ── */
+  footer {
+    flex-direction: column;
+    padding: 24px 20px;
+    gap: 12px;
+    align-items: flex-start;
+  }
+}
+</style>
+
+<script>
+  // ── Profile photo slideshow ──────────────────────────────────
+  // Add your photos as profile1.png, profile2.png, profile3.png, etc.
+  const photos = ['profile1.png', 'profile2.png', 'profile3.png'];
+  const img = document.getElementById('hero-photo');
+  let current = 0;
+
+  function preloadImages() {
+    photos.forEach(src => { const i = new Image(); i.src = src; });
+  }
+
+  function nextPhoto() {
+    const next = (current + 1) % photos.length;
+    // Fade out
+    img.style.opacity = '0';
+    setTimeout(() => {
+      img.src = photos[next];
+      img.onload = () => { img.style.opacity = '1'; };
+      // Fallback in case image is cached (onload may not fire)
+      setTimeout(() => { img.style.opacity = '1'; }, 100);
+      current = next;
+    }, 700); // matches the CSS transition duration
+  }
+
+  preloadImages();
+  setInterval(nextPhoto, 5000); // swap every 5 seconds
+</script>
+
+</body>
+</html>

@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Leave Ray a Tip – Castle Data Partners</title>
+  <link rel="icon" href="TechCrestDark.png" type="image/png">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: #f4f6f8;
+      color: #2d2d2d;
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+    a { text-decoration: none; color: inherit; }
+    :root {
+      --blue: #2979ff;
+      --border: #dde1e7;
+      --muted: #888;
+      --bg2: #f4f6f8;
+    }
+
+    /* ── Navbar ─────────────────────────────────────────────── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 48px; height: 68px;
+      background: #fff; border-bottom: 1px solid var(--border);
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    }
+    .nav-logo { display: flex; align-items: center; gap: 12px; font-size: 1.1rem; font-weight: 600; color: #1e1e1e; }
+    .nav-logo .logo-icon {
+      width: 40px; height: 40px; background: var(--blue); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: 1rem; color: #fff; flex-shrink: 0;
+    }
+    .nav-logo .logo-last { color: var(--muted); font-weight: 400; }
+    .nav-links { display: flex; align-items: center; gap: 32px; list-style: none; }
+    .nav-links li a { font-size: 0.9rem; color: #666; transition: color .2s; }
+    .nav-links li a:hover { color: #1e1e1e; }
+    .nav-links li a.nav-company { color: var(--blue); font-weight: 600; }
+
+    /* ── Page Wrapper ────────────────────────────────────────── */
+    .tip-page {
+      max-width: 520px;
+      margin: 48px auto 80px;
+      padding: 0 20px;
+    }
+
+    /* ── Main Card ───────────────────────────────────────────── */
+    .tip-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 40px 32px 36px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+      text-align: center;
+    }
+
+    /* Avatar */
+    .tip-avatar {
+      width: 80px; height: 80px;
+      background: #eef4ff;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2.4rem;
+      margin: 0 auto 20px;
+      border: 2px solid var(--border);
+    }
+
+    /* Stars */
+    .tip-stars {
+      display: flex; justify-content: center; gap: 6px;
+      margin-bottom: 20px;
+    }
+    .tip-stars span {
+      font-size: 1.6rem;
+      color: #f5a623;
+    }
+
+    /* Heading */
+    .tip-heading {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: #1e1e1e;
+      margin-bottom: 8px;
+      line-height: 1.2;
+    }
+    .tip-subheading {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-bottom: 24px;
+    }
+
+    /* Rating reminder callout */
+    .tip-callout {
+      background: #eef4ff;
+      border: 1px solid #c5d9ff;
+      border-radius: 8px;
+      padding: 14px 18px;
+      font-size: 0.875rem;
+      color: #1a4fcc;
+      font-weight: 500;
+      margin-bottom: 24px;
+    }
+
+    /* Body text */
+    .tip-body {
+      font-size: 0.9rem;
+      color: #555;
+      line-height: 1.8;
+      margin-bottom: 28px;
+    }
+
+    /* ── PayPal CTA ──────────────────────────────────────────── */
+    .btn-paypal {
+      display: block;
+      width: 100%;
+      background: var(--blue);
+      color: #fff;
+      border-radius: 50px;
+      padding: 16px 24px;
+      font-size: 1rem;
+      font-weight: 700;
+      text-align: center;
+      cursor: pointer;
+      transition: background .2s, transform .15s;
+      margin-bottom: 6px;
+      letter-spacing: 0.02em;
+    }
+    .btn-paypal:hover { background: #1a5fcc; transform: translateY(-1px); }
+    .btn-paypal-sub {
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-bottom: 28px;
+    }
+
+    /* ── Amount Presets ──────────────────────────────────────── */
+    .tip-section-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 14px;
+    }
+    .tip-amounts {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+    .tip-amount-btn {
+      display: block;
+      background: #fff;
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      padding: 14px 10px;
+      text-align: center;
+      cursor: pointer;
+      transition: border-color .2s, box-shadow .2s, transform .15s;
+      text-decoration: none;
+    }
+    .tip-amount-btn:hover {
+      border-color: var(--blue);
+      box-shadow: 0 2px 10px rgba(41,121,255,0.12);
+      transform: translateY(-1px);
+    }
+    .tip-amount-btn.featured {
+      border-color: var(--blue);
+      background: #eef4ff;
+    }
+    .tip-amount-label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+    .tip-amount-btn.featured .tip-amount-label { color: var(--blue); }
+    .tip-amount-value {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: #1e1e1e;
+    }
+
+    /* ── Other Ways to Tip ───────────────────────────────────── */
+    .tip-other {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+    .tip-other-card {
+      background: #fff;
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      padding: 16px 14px;
+      text-align: center;
+      cursor: pointer;
+      transition: border-color .2s, box-shadow .2s;
+      user-select: none;
+    }
+    .tip-other-card:hover {
+      border-color: #aaa;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    }
+    .tip-other-label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 5px;
+    }
+    .tip-other-value {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #1e1e1e;
+    }
+    .tip-other-action {
+      font-size: 0.75rem;
+      color: var(--blue);
+      margin-top: 3px;
+      font-weight: 500;
+    }
+
+    /* Copy toast */
+    .copy-toast {
+      display: none;
+      position: fixed;
+      bottom: 28px; left: 50%; transform: translateX(-50%);
+      background: #1e1e1e;
+      color: #fff;
+      padding: 10px 22px;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      z-index: 999;
+      white-space: nowrap;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+    }
+    .copy-toast.show { display: block; animation: fadeInOut 2s ease forwards; }
+    @keyframes fadeInOut {
+      0%   { opacity: 0; transform: translateX(-50%) translateY(8px); }
+      15%  { opacity: 1; transform: translateX(-50%) translateY(0); }
+      75%  { opacity: 1; }
+      100% { opacity: 0; }
+    }
+
+    /* ── Bookmark note ───────────────────────────────────────── */
+    .tip-bookmark {
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
+
+    /* ── CDP Footer promo ────────────────────────────────────── */
+    .tip-promo {
+      border-top: 1px solid var(--border);
+      padding-top: 20px;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+    .tip-promo a {
+      color: var(--blue);
+      font-weight: 600;
+    }
+    .tip-promo a:hover { text-decoration: underline; }
+
+    /* ── Footer ─────────────────────────────────────────────── */
+    footer {
+      background: #1e1e1e; border-top: 1px solid #333;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 24px 64px; font-size: 0.82rem; color: #aaa;
+      flex-wrap: wrap; gap: 12px;
+    }
+    .footer-links { display: flex; gap: 24px; }
+    .footer-links a { color: #aaa; transition: color .2s; }
+    .footer-links a:hover { color: #fff; }
+
+    /* ── Mobile ──────────────────────────────────────────────── */
+    @media (max-width: 600px) {
+      nav { padding: 0 20px; }
+      .nav-links { gap: 16px; }
+      .nav-links li a { font-size: 0.8rem; }
+      .tip-card { padding: 32px 20px 28px; }
+      footer { padding: 20px 24px; flex-direction: column; align-items: flex-start; }
+    }
+    @media (max-width: 420px) {
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── Navbar ──────────────────────────────────────────────── -->
+<nav>
+  <a href="index.html" class="nav-logo">
+    <div class="logo-icon">R</div>
+    <span>Rinaldo <span class="logo-last">Castillo</span></span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="aboutme.html">About Me</a></li>
+    <li><a href="resume.html">Resume</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="index.html" class="nav-company">Castle Data Partners</a></li>
+  </ul>
+</nav>
+
+<!-- ── Tip Card ─────────────────────────────────────────────── -->
+<div class="tip-page">
+  <div class="tip-card">
+
+    <!-- Avatar -->
+    <div class="tip-avatar">🚗</div>
+
+    <!-- Stars -->
+    <div class="tip-stars">
+      <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+    </div>
+
+    <!-- Heading -->
+    <h1 class="tip-heading">Thanks for riding with Ray!</h1>
+    <p class="tip-subheading">New York-based IT professional &amp; for-hire driver — one of the good ones.</p>
+
+    <!-- Rating callout -->
+    <div class="tip-callout">
+      ⭐ Don't forget to leave a 5-star rating in the app too!
+    </div>
+
+    <!-- Body -->
+    <p class="tip-body">
+      Hope the ride was smooth and the conversation was good.
+      If you enjoyed the trip, a tip goes a long way — and it's always appreciated. 🙏
+    </p>
+
+    <!-- PayPal CTA -->
+    <a href="https://paypal.me/dedprzdnt" target="_blank" rel="noopener" class="btn-paypal">
+      Leave a Tip via PayPal
+    </a>
+    <p class="btn-paypal-sub">safe &amp; secure · no account needed</p>
+
+    <!-- Preset amounts -->
+    <p class="tip-section-label">Or pick an amount</p>
+    <div class="tip-amounts">
+      <a href="https://paypal.me/dedprzdnt/2USD" target="_blank" rel="noopener" class="tip-amount-btn">
+        <div class="tip-amount-label">Solid</div>
+        <div class="tip-amount-value">$2</div>
+      </a>
+      <a href="https://paypal.me/dedprzdnt/5USD" target="_blank" rel="noopener" class="tip-amount-btn">
+        <div class="tip-amount-label">Great Ride</div>
+        <div class="tip-amount-value">$5</div>
+      </a>
+      <a href="https://paypal.me/dedprzdnt/10USD" target="_blank" rel="noopener" class="tip-amount-btn featured">
+        <div class="tip-amount-label">🔥 Loved It</div>
+        <div class="tip-amount-value">$10</div>
+      </a>
+    </div>
+
+    <!-- Other ways to tip -->
+    <p class="tip-section-label">Other ways to tip</p>
+    <div class="tip-other">
+      <div class="tip-other-card" onclick="copyText('$dedprzdnt', 'Cash App handle copied!')">
+        <div class="tip-other-label">Cash App</div>
+        <div class="tip-other-value">$dedprzdnt</div>
+        <div class="tip-other-action">Tap to copy</div>
+      </div>
+      <div class="tip-other-card" onclick="copyText('929-300-2795', 'Zelle number copied!')">
+        <div class="tip-other-label">Zelle</div>
+        <div class="tip-other-value">929-300-2795</div>
+        <div class="tip-other-action">Tap to copy</div>
+      </div>
+    </div>
+
+    <!-- CDP promo -->
+    <div class="tip-promo">
+      Need tech help at home or work?<br>
+      <a href="https://www.castledatapartners.com" target="_blank" rel="noopener">castledatapartners.com</a>
+    </div>
+
+  </div>
+</div>
+
+<!-- Copy toast notification -->
+<div class="copy-toast" id="copy-toast"></div>
+
+<!-- ── Footer ──────────────────────────────────────────────── -->
+<footer>
+  <span>© 2026 Castle Data Partners LLC. All rights reserved.</span>
+  <div class="footer-links">
+    <a href="aboutme.html">About Me</a>
+    <a href="index.html">Castle Data Partners</a>
+    <a href="contact.html">Contact</a>
+  </div>
+</footer>
+
+<script>
+  function copyText(text, message) {
+    navigator.clipboard.writeText(text).then(() => {
+      const toast = document.getElementById('copy-toast');
+      toast.textContent = '✓ ' + message;
+      toast.classList.remove('show');
+      void toast.offsetWidth; // reset animation
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 2100);
+    }).catch(() => {
+      // Fallback for older browsers
+      const el = document.createElement('textarea');
+      el.value = text;
+      document.body.appendChild(el);
+      el.select();
+      document.execCommand('copy');
+      document.body.removeChild(el);
+      alert('Copied: ' + text);
+    });
+  }
+</script>
+
+<style>
+/* Additional mobile polish (supplements existing @media blocks) */
+@media (max-width: 768px) {
+  body { overflow-x: hidden; }
+
+  /* ── Nav ── */
+  nav {
+    padding: 10px 16px;
+    height: auto;
+    min-height: 60px;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .nav-links {
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+  .nav-links li a { font-size: 0.76rem; }
+
+  /* ── Tip page ── */
+  .tip-page { margin: 24px auto 60px; padding: 0 12px; }
+  .tip-card { padding: 28px 18px 24px; }
+  .tip-heading { font-size: 1.3rem; }
+  .tip-amounts { gap: 8px; }
+  .tip-other { gap: 8px; }
+}
+</style>
+</body>
+</html>

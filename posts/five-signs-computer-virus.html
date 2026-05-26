@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>5 Signs Your Computer Has a Virus – Rinaldo Castillo</title>
+  <link rel="icon" href="../TechCrestDark.png" type="image/png">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background: #ffffff; color: #2d2d2d; line-height: 1.6; }
+    a { text-decoration: none; color: inherit; }
+    :root { --blue: #2979ff; --border: #dde1e7; --muted: #888; --bg2: #f4f6f8; }
+    nav { position: sticky; top: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 0 48px; height: 68px; background: #fff; border-bottom: 1px solid var(--border); box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+    .nav-logo { display: flex; align-items: center; gap: 12px; font-size: 1.1rem; font-weight: 600; color: #1e1e1e; }
+    .nav-logo .logo-icon { width: 40px; height: 40px; background: var(--blue); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1rem; color: #fff; flex-shrink: 0; }
+    .nav-logo .logo-last { color: var(--muted); font-weight: 400; }
+    .nav-links { display: flex; align-items: center; gap: 32px; list-style: none; }
+    .nav-links li a { font-size: 0.9rem; color: #666; transition: color .2s; }
+    .nav-links li a:hover { color: #1e1e1e; }
+    .nav-links li a.nav-company { color: var(--blue); font-weight: 600; }
+    .post-wrap { max-width: 760px; margin: 0 auto; padding: 56px 32px 96px; }
+    .back-link { display: inline-flex; align-items: center; gap: 6px; font-size: 0.82rem; color: var(--muted); margin-bottom: 36px; transition: color .2s; }
+    .back-link:hover { color: var(--blue); }
+    .back-link svg { width: 14px; height: 14px; }
+    .post-category { display: inline-block; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--blue); background: #eef4ff; border-radius: 4px; padding: 4px 10px; margin-bottom: 16px; }
+    .post-title { font-size: clamp(1.8rem, 4vw, 2.4rem); font-weight: 800; color: #1e1e1e; line-height: 1.2; margin-bottom: 16px; }
+    .post-meta { display: flex; align-items: center; gap: 16px; font-size: 0.82rem; color: var(--muted); margin-bottom: 32px; flex-wrap: wrap; }
+    .post-meta-dot { width: 3px; height: 3px; border-radius: 50%; background: var(--muted); }
+    .post-cover { width: 100%; aspect-ratio: 16 / 9; border-radius: 10px; overflow: hidden; margin-bottom: 40px; background: var(--bg2); }
+    .post-cover img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .post-content { font-size: 1rem; color: #333; line-height: 1.85; }
+    .post-content h2 { font-size: 1.35rem; font-weight: 700; color: #1e1e1e; margin: 40px 0 14px; }
+    .post-content h3 { font-size: 1.1rem; font-weight: 700; color: #1e1e1e; margin: 28px 0 10px; }
+    .post-content p { margin-bottom: 20px; }
+    .post-content ul, .post-content ol { padding-left: 24px; margin-bottom: 20px; display: flex; flex-direction: column; gap: 8px; }
+    .post-content li { font-size: 0.95rem; color: #444; line-height: 1.75; }
+    .post-content strong { color: #1e1e1e; }
+    .post-content a { color: var(--blue); text-decoration: underline; }
+    .post-content blockquote { border-left: 3px solid var(--blue); padding: 12px 20px; margin: 24px 0; background: #f7f9ff; border-radius: 0 6px 6px 0; font-style: italic; color: #555; }
+    .post-divider { border: none; border-top: 1px solid var(--border); margin: 48px 0; }
+    footer { background: #1e1e1e; border-top: 1px solid #333; display: flex; align-items: center; justify-content: space-between; padding: 24px 64px; font-size: 0.82rem; color: #aaa; flex-wrap: wrap; gap: 12px; }
+    .footer-links { display: flex; gap: 24px; }
+    .footer-links a { color: #aaa; transition: color .2s; }
+    .footer-links a:hover { color: #fff; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="../aboutme.html" class="nav-logo">
+    <div class="logo-icon">R</div>
+    <span>Rinaldo <span class="logo-last">Castillo</span></span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="../aboutme.html">About Me</a></li>
+    <li><a href="../resume.html">Resume</a></li>
+    <li><a href="../portfolio.html">Portfolio</a></li>
+    <li><a href="../blog.html" class="active">Blog</a></li>
+    <li><a href="../contact.html">Contact</a></li>
+    <li><a href="../index.html" class="nav-company">Castle Data Partners</a></li>
+  </ul>
+</nav>
+
+<div class="post-wrap">
+
+  <a href="../blog.html" class="back-link">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+    Back to Blog
+  </a>
+
+  <div class="post-category">IT Tips &amp; Tricks</div>
+  <h1 class="post-title">5 Signs Your Computer Has a Virus (And What To Do About It)</h1>
+  <div class="post-meta">
+    <span>Rinaldo Castillo</span>
+    <span class="post-meta-dot"></span>
+    <span>May 20, 2026</span>
+    <span class="post-meta-dot"></span>
+    <span>5 min read</span>
+  </div>
+
+  <div class="post-cover">
+    <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=1200&q=80" alt="Computer virus warning screen" />
+  </div>
+
+  <div class="post-content">
+
+    <p>Your computer has been acting a little strange lately. Maybe it's slower than usual, or you're seeing pop-ups you didn't ask for. Before you panic — or worse, ignore it — here are five clear signs that your computer may be infected, and exactly what to do next.</p>
+
+    <h2>1. Your Computer Is Suddenly Slow</h2>
+    <p>One of the most common signs of a virus is a dramatic slowdown. If your computer used to start up in 30 seconds and now takes three minutes, something is using your processor and memory in the background — and malware is a likely culprit.</p>
+    <p><strong>What to do:</strong> Open Task Manager (Windows) or Activity Monitor (Mac) and look for unfamiliar processes using a lot of CPU or memory. Don't recognize something? That's worth investigating.</p>
+
+    <h2>2. Pop-Ups Keep Appearing</h2>
+    <p>If you're getting pop-up ads even when your browser is closed, or you're seeing warnings claiming your computer is infected and urging you to call a number — that's a red flag. Legitimate companies do not contact you this way.</p>
+    <p><strong>What to do:</strong> Do not click anything in those pop-ups. Don't call any numbers they display. Close them with Task Manager if needed, and run a malware scan.</p>
+
+    <h2>3. Your Browser Has Changed on Its Own</h2>
+    <p>If your homepage changed, you have a new search engine you didn't install, or there are toolbars and extensions you don't recognize — your browser has likely been hijacked by adware or a browser hijacker.</p>
+    <p><strong>What to do:</strong> Go into your browser settings, remove unfamiliar extensions, and reset your homepage and default search engine. Then run a full scan.</p>
+
+    <h2>4. You're Getting Unexplained Crashes or Errors</h2>
+    <p>Frequent blue screens (Windows) or application crashes that didn't used to happen can signal corrupted system files — sometimes caused by malware that interferes with core operating system components.</p>
+    <p><strong>What to do:</strong> Note when the crashes happen and what you were doing. Run Windows Defender or your preferred antivirus in full-scan mode.</p>
+
+    <h2>5. Friends Are Getting Strange Messages From You</h2>
+    <p>If someone tells you they received a weird email or social media message from your account that you didn't send — your account (or device) has likely been compromised. This is a sign of credential-stealing malware.</p>
+    <p><strong>What to do:</strong> Immediately change your passwords from a different, clean device. Enable two-factor authentication on all your accounts. Then clean your infected machine.</p>
+
+    <blockquote>When in doubt, don't try to fix it yourself. The wrong move can make things worse — or cause you to lose important files.</blockquote>
+
+    <h2>What To Do If You Think You're Infected</h2>
+    <ul>
+      <li>Disconnect from the internet to stop the malware from communicating outward</li>
+      <li>Run a full scan with Windows Defender, Malwarebytes, or another reputable tool</li>
+      <li>Back up your important files to an external drive (after scanning it)</li>
+      <li>If the infection is severe, a full OS reinstall may be the cleanest fix</li>
+      <li>Call a professional if you're not comfortable doing this yourself</li>
+    </ul>
+
+    <p>Caught something nasty or just not sure? Castle Data Partners offers virus removal and cleanup for homes and small businesses across New York. We'll get you sorted quickly — no drama, no jargon.</p>
+
+  </div>
+
+  <hr class="post-divider" />
+  <p style="font-size:0.85rem;color:var(--muted);">Think you have a virus? <a href="../contact.html">Get in touch</a> — we offer fast, affordable virus removal in New York.</p>
+
+</div>
+
+<footer>
+  <span>© 2026 Rinaldo Castillo · Castle Data Partners LLC. All rights reserved.</span>
+  <div class="footer-links">
+    <a href="../aboutme.html">About Me</a>
+    <a href="../blog.html" class="active">Blog</a>
+    <a href="../index.html">Castle Data Partners</a>
+    <a href="../contact.html">Contact</a>
+  </div>
+</footer>
+
+<style>
+@media (max-width: 768px) {
+  body { overflow-x: hidden; }
+
+  /* ── Nav ── */
+  nav {
+    padding: 10px 16px;
+    height: auto;
+    min-height: 60px;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .nav-links {
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+  .nav-links li a { font-size: 0.76rem; }
+
+  /* ── Post content ── */
+  .post-wrap { padding: 32px 20px 64px; }
+  .post-cover img { max-width: 100%; height: auto; }
+
+  /* ── Footer ── */
+  footer {
+    padding: 20px 20px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .footer-links { flex-wrap: wrap; gap: 14px; }
+}
+</style>
+</body>
+</html>

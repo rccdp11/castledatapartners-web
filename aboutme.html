@@ -1,0 +1,1001 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rinaldo Castillo – About Me</title>
+  <link rel="icon" href="TechCrestDark.png" type="image/png">
+  <style>
+    /* ── Reset & Base ─────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: #ffffff;
+      color: #2d2d2d;
+      line-height: 1.6;
+    }
+    a { text-decoration: none; color: inherit; }
+
+    /* ── CSS Variables ────────────────────────────────────────── */
+    :root {
+      --blue: #2979ff;
+      --bg: #ffffff;
+      --bg2: #eef0f3;
+      --card: #ffffff;
+      --border: #dde1e7;
+      --muted: #888;
+      --text: #2d2d2d;
+      --heading: #1e1e1e;
+    }
+
+    /* ── Navbar ───────────────────────────────────────────────── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 48px;
+      height: 68px;
+      background: #ffffff;
+      border-bottom: 1px solid var(--border);
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--heading);
+    }
+    .nav-logo .logo-icon {
+      width: 40px; height: 40px;
+      background: var(--blue);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: 1rem; color: #fff;
+      flex-shrink: 0;
+    }
+    .nav-logo .logo-last { color: var(--muted); font-weight: 400; }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      list-style: none;
+    }
+    .nav-links li a {
+      font-size: 0.9rem;
+      color: #666;
+      transition: color .2s;
+    }
+    .nav-links li a:hover,
+    .nav-links li a.active { color: var(--heading); font-weight: 600; }
+    .nav-links li a.nav-company {
+      color: var(--blue);
+      font-weight: 600;
+    }
+    .nav-links li a.nav-company:hover { color: #1a5fcc; }
+
+    /* ── Section Shared ───────────────────────────────────────── */
+    section { padding: 80px 64px; }
+    .section-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--heading);
+      padding-bottom: 10px;
+      position: relative;
+      display: inline-block;
+      margin-bottom: 8px;
+    }
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 36px; height: 2px;
+      background: var(--blue);
+    }
+
+    /* ── Hero ─────────────────────────────────────────────────── */
+    #about {
+      min-height: calc(100vh - 68px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 60px 64px;
+      gap: 80px;
+      background: #fff;
+    }
+    .hero-inner {
+      display: flex;
+      align-items: center;
+      gap: 80px;
+      max-width: 1100px;
+      width: 100%;
+    }
+    .hero-photo-wrap {
+      flex-shrink: 0;
+      position: relative;
+      width: 340px; height: 340px;
+    }
+    .hero-photo-wrap::before {
+      content: '';
+      position: absolute;
+      inset: -14px;
+      border-radius: 50%;
+      background: conic-gradient(var(--blue) 0deg 200deg, #d8dce2 200deg 360deg);
+      z-index: 0;
+    }
+    .hero-photo-wrap::after {
+      content: '';
+      position: absolute;
+      inset: -6px;
+      border-radius: 50%;
+      background: #fff;
+      z-index: 1;
+    }
+    .hero-photo {
+      position: relative;
+      z-index: 2;
+      width: 100%; height: 100%;
+      border-radius: 50%;
+      background: #dde1e7;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .hero-photo svg { width: 60%; height: 60%; opacity: 0.25; }
+    .hero-content { flex: 1; }
+
+    /* Animated title */
+    .hero-label-wrap {
+      font-size: 0.95rem;
+      color: var(--muted);
+      letter-spacing: 0.04em;
+      margin-bottom: 12px;
+      height: 1.4em;
+      overflow: hidden;
+    }
+    .hero-label-inner {
+      display: flex;
+      flex-direction: column;
+      animation: slideTitle 6s steps(1) infinite;
+    }
+    .hero-label-inner span { line-height: 1.4em; }
+    @keyframes slideTitle {
+      0%   { transform: translateY(0); }
+      50%  { transform: translateY(-1.4em); }
+      100% { transform: translateY(0); }
+    }
+
+    .hero-name {
+      font-size: clamp(2.4rem, 5vw, 3.2rem);
+      font-weight: 800;
+      color: var(--heading);
+      margin-bottom: 20px;
+      line-height: 1.1;
+    }
+    .hero-bio {
+      font-size: 0.95rem;
+      color: #666;
+      max-width: 520px;
+      margin-bottom: 36px;
+      line-height: 1.8;
+    }
+    .hero-buttons { display: flex; gap: 16px; flex-wrap: wrap; }
+    .btn {
+      padding: 12px 28px;
+      border-radius: 50px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all .2s;
+      letter-spacing: 0.02em;
+    }
+    .btn-primary {
+      background: transparent;
+      border: 2px solid var(--blue);
+      color: var(--heading);
+    }
+    .btn-primary:hover { background: var(--blue); color: #fff; }
+    .btn-secondary {
+      background: transparent;
+      border: 2px solid #ccc;
+      color: var(--heading);
+    }
+    .btn-secondary:hover { border-color: #888; }
+
+    /* ── What I Do ────────────────────────────────────────────── */
+    #what-i-do { background: var(--bg); }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 36px;
+      margin-top: 40px;
+    }
+    .service-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 28px 24px;
+      display: flex;
+      gap: 18px;
+      align-items: flex-start;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+      transition: box-shadow .2s, transform .2s;
+    }
+    .service-card:hover {
+      box-shadow: 0 4px 16px rgba(41,121,255,0.1);
+      transform: translateY(-2px);
+    }
+    .service-icon {
+      width: 44px; height: 44px;
+      flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--blue);
+      background: #eef4ff;
+      border-radius: 10px;
+    }
+    .service-icon svg { width: 22px; height: 22px; }
+    .service-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--heading);
+      margin-bottom: 8px;
+    }
+    .service-desc { font-size: 0.875rem; color: #666; line-height: 1.7; }
+
+    /* ── Testimonials ─────────────────────────────────────────── */
+    #testimonials { background: var(--card); }
+    .testimonials-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 8px;
+    }
+    .google-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #555;
+      border: 1px solid var(--border);
+      border-radius: 50px;
+      padding: 6px 14px;
+      transition: border-color .2s;
+    }
+    .google-badge:hover { border-color: #aaa; color: #333; }
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      margin-top: 32px;
+    }
+    @media (max-width: 768px) { .testimonials-grid { grid-template-columns: 1fr; } }
+    .testimonial-card {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 28px 28px 56px;
+      position: relative;
+      background: var(--bg);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+    .testimonial-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 14px;
+    }
+    .testimonial-avatar {
+      width: 48px; height: 48px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden;
+      flex-shrink: 0;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #fff;
+    }
+    .testimonial-avatar img { width: 100%; height: 100%; object-fit: cover; }
+    .testimonial-stars {
+      display: flex;
+      gap: 2px;
+      margin-bottom: 3px;
+    }
+    .testimonial-meta-name {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--heading);
+    }
+    .testimonial-meta-co {
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+    .testimonial-quote {
+      font-size: 0.88rem;
+      color: #555;
+      line-height: 1.75;
+    }
+    .testimonial-mark {
+      position: absolute;
+      bottom: 16px; right: 24px;
+      font-size: 3.5rem;
+      color: #dde1e7;
+      font-family: Georgia, serif;
+      line-height: 1;
+    }
+    /* Skeleton loader */
+    .review-skeleton {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .skel-row { display: flex; align-items: center; gap: 12px; }
+    .skel-circle {
+      width: 48px; height: 48px; border-radius: 50%; flex-shrink: 0;
+      background: linear-gradient(90deg, #eee 25%, #f5f5f5 50%, #eee 75%);
+      background-size: 200% 100%;
+      animation: shimmer 1.4s infinite;
+    }
+    .skel-lines { flex: 1; display: flex; flex-direction: column; gap: 8px; }
+    .skel-line {
+      height: 11px; border-radius: 6px;
+      background: linear-gradient(90deg, #eee 25%, #f5f5f5 50%, #eee 75%);
+      background-size: 200% 100%;
+      animation: shimmer 1.4s infinite;
+    }
+    .skel-line.short { width: 55%; }
+    @keyframes shimmer { to { background-position: -200% 0; } }
+    .reviews-empty {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 48px 0;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    /* ── Industries Served ───────────────────────────────────── */
+    #clients { background: var(--bg); }
+    .industries-intro {
+      max-width: 580px;
+      margin-bottom: 40px;
+    }
+    .industries-intro p {
+      font-size: 0.95rem;
+      color: #666;
+      line-height: 1.8;
+      margin-top: 8px;
+    }
+    .industries-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+    .industry-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px 22px;
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+      transition: box-shadow .2s, transform .2s, border-color .2s;
+    }
+    .industry-card:hover {
+      box-shadow: 0 6px 20px rgba(41,121,255,0.09);
+      transform: translateY(-2px);
+      border-color: #c5d9ff;
+    }
+    .industry-icon {
+      width: 42px; height: 42px;
+      flex-shrink: 0;
+      background: #eef4ff;
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--blue);
+    }
+    .industry-icon svg { width: 20px; height: 20px; }
+    .industry-info {}
+    .industry-name {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: #1e1e1e;
+      margin-bottom: 4px;
+    }
+    .industry-desc {
+      font-size: 0.8rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* ── Fun Facts ────────────────────────────────────────────── */
+    #fun-facts { background: var(--card); }
+    .facts-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      margin-top: 40px;
+    }
+    @media (max-width: 900px) { .facts-grid { grid-template-columns: repeat(2, 1fr); } }
+    .fact-card {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 36px 24px;
+      text-align: center;
+      background: var(--bg);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      transition: box-shadow .2s, transform .2s;
+    }
+    .fact-card:hover {
+      box-shadow: 0 4px 16px rgba(41,121,255,0.1);
+      transform: translateY(-2px);
+    }
+    .fact-icon {
+      width: 48px; height: 48px;
+      margin: 0 auto 16px;
+      color: var(--blue);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .fact-icon svg { width: 36px; height: 36px; }
+    .fact-label {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-bottom: 10px;
+      font-weight: 500;
+    }
+    .fact-number {
+      font-size: 2.6rem;
+      font-weight: 800;
+      color: #dde1e7;
+      line-height: 1;
+    }
+
+    /* ── Footer ───────────────────────────────────────────────── */
+    footer {
+      background: #1e1e1e;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 24px 64px;
+      font-size: 0.82rem;
+      color: #aaa;
+    }
+    .footer-social { display: flex; gap: 24px; }
+    .footer-social a { color: #aaa; transition: color .2s; }
+    .footer-social a:hover { color: #fff; }
+
+    /* ── Back to top ──────────────────────────────────────────── */
+    .back-to-top {
+      position: fixed;
+      bottom: 24px; right: 20px;
+      width: 40px; height: 40px;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+      color: #888;
+      font-size: 1rem;
+      transition: all .2s;
+      z-index: 90;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    .back-to-top:hover { color: var(--heading); border-color: #aaa; }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════════════════════
+     NAVBAR
+═══════════════════════════════════════════════════════════════ -->
+<nav>
+  <div class="nav-logo">
+    <div class="logo-icon">R</div>
+    <span><strong>Rinaldo</strong> <span class="logo-last">Castillo</span></span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="aboutme.html" class="active">About Me</a></li>
+    <li><a href="resume.html">Resume</a></li>
+    <li><a href="portfolio.html">Portfolio</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="index.html" class="nav-company">Castle Data Partners</a></li>
+  </ul>
+</nav>
+
+<!-- ══════════════════════════════════════════════════════════════
+     HERO
+═══════════════════════════════════════════════════════════════ -->
+<section id="about">
+  <div class="hero-inner">
+    <div class="hero-photo-wrap">
+      <div class="hero-photo">
+        <img id="hero-photo" src="profile1.png" alt="Rinaldo Castillo"
+             style="width:100%;height:100%;object-fit:cover;object-position:center top;border-radius:50%;transition:opacity 0.7s ease;">
+      </div>
+    </div>
+
+    <div class="hero-content">
+      <div class="hero-label-wrap">
+        <div class="hero-label-inner">
+          <span>IT Specialist</span>
+          <span>Field Engineer</span>
+        </div>
+      </div>
+      <h1 class="hero-name">Rinaldo Castillo</h1>
+      <p class="hero-bio">
+        IT professional with 15+ years resolving hardware, software, and network
+        issues across enterprise, clinical, and retail environments — including
+        phone-based helpdesk, onsite field service, and enterprise deployment.
+        CompTIA A+ certified with a consistent track record of first-call resolution
+        and calm, precise support under pressure.
+      </p>
+      <div class="hero-buttons">
+        <a href="Rinaldo_Castillo_Resume.pdf" download class="btn btn-primary">Download CV</a>
+        <a href="contact.html" class="btn btn-secondary">Contact</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════════
+     WHAT I DO
+═══════════════════════════════════════════════════════════════ -->
+<section id="what-i-do">
+  <h2 class="section-title">What I Do</h2>
+  <div class="services-grid">
+
+    <div class="service-card">
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>
+        </svg>
+      </div>
+      <div>
+        <h3 class="service-title">Helpdesk &amp; Remote Support</h3>
+        <p class="service-desc">Phone-based and remote desktop support for Windows 10/11, Active Directory, MS Office 365, and VPN — with consistent first-call resolution across enterprise environments.</p>
+      </div>
+    </div>
+
+    <div class="service-card">
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 010 14.14M4.93 4.93a10 10 0 000 14.14M15.54 8.46a5 5 0 010 7.07M8.46 8.46a5 5 0 000 7.07"/>
+        </svg>
+      </div>
+      <div>
+        <h3 class="service-title">Network Infrastructure</h3>
+        <p class="service-desc">Configuration and deployment of Cisco Meraki switches, access points, Palo Alto GlobalProtect firewalls, and VLAN infrastructure across 20+ enterprise site builds.</p>
+      </div>
+    </div>
+
+    <div class="service-card">
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/><path d="M9 15l2 2 4-4"/>
+        </svg>
+      </div>
+      <div>
+        <h3 class="service-title">Field Service &amp; Deployment</h3>
+        <p class="service-desc">On-site installation, calibration, and troubleshooting of enterprise hardware — POS systems, diagnostic imaging equipment, and full office infrastructure buildouts.</p>
+      </div>
+    </div>
+
+    <div class="service-card">
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/>
+        </svg>
+      </div>
+      <div>
+        <h3 class="service-title">Device Management &amp; MDM</h3>
+        <p class="service-desc">JAMF administration for Mac fleet management, MDM provisioning, policy enforcement, and device imaging across multi-OS environments using Intune and Active Directory.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════════
+     TESTIMONIALS — pulled live from Google Reviews
+═══════════════════════════════════════════════════════════════ -->
+<section id="testimonials">
+  <div class="testimonials-header">
+    <h2 class="section-title">What Clients Say</h2>
+    <a href="https://www.google.com/search?q=Castle+Data+Partners+New+York+reviews"
+       target="_blank" rel="noopener" class="google-badge" id="google-badge-link">
+      <!-- Google G logo -->
+      <svg width="16" height="16" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+        <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
+        <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
+        <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
+        <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.31-8.16 2.31-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
+      </svg>
+      Reviews on Google
+    </a>
+  </div>
+
+  <!-- Skeleton cards shown while reviews load -->
+  <div class="testimonials-grid" id="reviews-grid">
+    <div class="review-skeleton">
+      <div class="skel-row"><div class="skel-circle"></div><div class="skel-lines"><div class="skel-line short"></div><div class="skel-line" style="width:70%"></div></div></div>
+      <div class="skel-line"></div><div class="skel-line"></div><div class="skel-line short"></div>
+    </div>
+    <div class="review-skeleton">
+      <div class="skel-row"><div class="skel-circle"></div><div class="skel-lines"><div class="skel-line short"></div><div class="skel-line" style="width:70%"></div></div></div>
+      <div class="skel-line"></div><div class="skel-line"></div><div class="skel-line short"></div>
+    </div>
+    <div class="review-skeleton">
+      <div class="skel-row"><div class="skel-circle"></div><div class="skel-lines"><div class="skel-line short"></div><div class="skel-line" style="width:70%"></div></div></div>
+      <div class="skel-line"></div><div class="skel-line"></div><div class="skel-line short"></div>
+    </div>
+    <div class="review-skeleton">
+      <div class="skel-row"><div class="skel-circle"></div><div class="skel-lines"><div class="skel-line short"></div><div class="skel-line" style="width:70%"></div></div></div>
+      <div class="skel-line"></div><div class="skel-line"></div><div class="skel-line short"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════════
+     INDUSTRIES SERVED
+═══════════════════════════════════════════════════════════════ -->
+<section id="clients">
+  <div class="industries-intro">
+    <h2 class="section-title">Industries Served</h2>
+    <p>15+ years of hands-on IT work across a wide range of environments — from enterprise law firms and clinical labs to retail floors and financial district offices.</p>
+  </div>
+
+  <div class="industries-grid">
+
+    <div class="industry-card">
+      <div class="industry-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>
+        </svg>
+      </div>
+      <div class="industry-info">
+        <div class="industry-name">Field &amp; Logistics</div>
+        <div class="industry-desc">Nationwide hardware deployment across data centers, corporate environments, and multi-site enterprise locations.</div>
+      </div>
+    </div>
+
+    <div class="industry-card">
+      <div class="industry-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+        </svg>
+      </div>
+      <div class="industry-info">
+        <div class="industry-name">Healthcare &amp; Clinical</div>
+        <div class="industry-desc">Diagnostic imaging systems, clinical lab infrastructure, and HIPAA-adjacent environments.</div>
+      </div>
+    </div>
+
+    <div class="industry-card">
+      <div class="industry-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/>
+        </svg>
+      </div>
+      <div class="industry-info">
+        <div class="industry-name">Retail &amp; POS</div>
+        <div class="industry-desc">Point-of-sale deployments, store network builds, and retail IT support at scale.</div>
+      </div>
+    </div>
+
+    <div class="industry-card">
+      <div class="industry-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/>
+        </svg>
+      </div>
+      <div class="industry-info">
+        <div class="industry-name">Professional Services</div>
+        <div class="industry-desc">On-site IT support for law firms, consulting offices, and professional service firms across New York City.</div>
+      </div>
+    </div>
+
+    <div class="industry-card">
+      <div class="industry-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/><circle cx="12" cy="10" r="3"/>
+        </svg>
+      </div>
+      <div class="industry-info">
+        <div class="industry-name">Tech &amp; SaaS</div>
+        <div class="industry-desc">Internal IT support for fast-growing technology companies, managing multi-OS fleets and developer environments.</div>
+      </div>
+    </div>
+
+    <div class="industry-card">
+      <div class="industry-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
+        </svg>
+      </div>
+      <div class="industry-info">
+        <div class="industry-name">Residential &amp; Small Business</div>
+        <div class="industry-desc">Home networks, PC repair, smart home setup, and tech support for local New York families and businesses.</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════════
+     FUN FACTS
+═══════════════════════════════════════════════════════════════ -->
+<section id="fun-facts">
+  <h2 class="section-title">Fun Facts</h2>
+  <div class="facts-grid">
+
+    <div class="fact-card">
+      <div class="fact-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+        </svg>
+      </div>
+      <div class="fact-label">Years in IT</div>
+      <div class="fact-number">15+</div>
+    </div>
+
+    <div class="fact-card">
+      <div class="fact-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/>
+        </svg>
+      </div>
+      <div class="fact-label">Enterprise Sites Served</div>
+      <div class="fact-number">50+</div>
+    </div>
+
+    <div class="fact-card">
+      <div class="fact-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+        </svg>
+      </div>
+      <div class="fact-label">First-Call Resolution</div>
+      <div class="fact-number">95%</div>
+    </div>
+
+    <div class="fact-card">
+      <div class="fact-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/>
+        </svg>
+      </div>
+      <div class="fact-label">Technicians Trained</div>
+      <div class="fact-number">20+</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════════
+     FOOTER
+═══════════════════════════════════════════════════════════════ -->
+<footer id="contact">
+  <div class="footer-social">
+    <a href="https://linkedin.com/in/rinaldo-castillo" target="_blank" rel="noopener">LinkedIn</a>
+    <a href="mailto:RinaldoCastillo.ME@Gmail.com">Email</a>
+    <a href="https://castledatapartners.com" target="_blank" rel="noopener">Castle Data Partners</a>
+  </div>
+  <span>© 2026 Castle Data Partners LLC. All rights reserved.</span>
+</footer>
+
+<a href="#about" class="back-to-top" title="Back to top">&#8679;</a>
+
+<style>
+@media (max-width: 768px) {
+  body { overflow-x: hidden; }
+
+  /* ── Nav ── */
+  nav {
+    padding: 10px 16px;
+    height: auto;
+    min-height: 60px;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .nav-links {
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+  .nav-links li a { font-size: 0.76rem; }
+
+  /* ── Sections ── */
+  section { padding: 48px 20px; }
+
+  /* ── Hero ── */
+  #about {
+    flex-direction: column;
+    padding: 40px 20px;
+    gap: 32px;
+    min-height: unset;
+    align-items: center;
+  }
+  .hero-inner {
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+  }
+  .hero-photo-wrap {
+    width: 200px;
+    height: 200px;
+    margin: 0 auto;
+  }
+  .hero-content { text-align: center; }
+  .hero-buttons { justify-content: center; }
+
+  /* ── Fun Facts ── */
+  .facts-grid { grid-template-columns: 1fr 1fr; gap: 16px; }
+
+  /* ── Footer ── */
+  footer {
+    flex-direction: column;
+    padding: 24px 20px;
+    gap: 12px;
+    align-items: flex-start;
+  }
+}
+</style>
+
+<script>
+  // ── Google Reviews ────────────────────────────────────────────
+  const MAPS_KEY   = 'AIzaSyDveuiSVxOW85ETXw_A_VLh_HR1wqaUbCA';
+  const QUERY      = 'Castle Data Partners New York';
+  const GRID       = document.getElementById('reviews-grid');
+  const BADGE_LINK = document.getElementById('google-badge-link');
+
+  // Avatar background colours (cycles by first letter)
+  const AVATAR_COLORS = ['#4285f4','#ea4335','#34a853','#fbbc05','#9c27b0','#00897b','#e91e63'];
+  function avatarColor(name) {
+    return AVATAR_COLORS[name.charCodeAt(0) % AVATAR_COLORS.length];
+  }
+
+  // Star SVGs
+  function starSVG(filled) {
+    return `<svg width="13" height="13" viewBox="0 0 24 24" fill="${filled ? '#fbbc04' : '#dde1e7'}" xmlns="http://www.w3.org/2000/svg">
+      <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+    </svg>`;
+  }
+  function renderStars(rating) {
+    return Array.from({length: 5}, (_, i) => starSVG(i < rating)).join('');
+  }
+
+  // Format Unix timestamp → "May 2026"
+  function formatDate(ts) {
+    return new Date(ts * 1000).toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+  }
+
+  // Truncate long reviews
+  function truncate(text, max = 220) {
+    return text.length > max ? text.slice(0, max).trimEnd() + '…' : text;
+  }
+
+  // Build a single review card
+  function buildCard(review) {
+    const color   = avatarColor(review.author_name);
+    const initial = review.author_name.charAt(0).toUpperCase();
+    const avatar  = review.profile_photo_url
+      ? `<img src="${review.profile_photo_url}" alt="${review.author_name}" />`
+      : initial;
+    const date = formatDate(review.time);
+    return `
+      <div class="testimonial-card">
+        <div class="testimonial-header">
+          <div class="testimonial-avatar" style="background:${review.profile_photo_url ? '#dde1e7' : color}">
+            ${avatar}
+          </div>
+          <div>
+            <div class="testimonial-meta-name">${review.author_name}</div>
+            <div class="testimonial-stars">${renderStars(review.rating)}</div>
+            <div class="testimonial-meta-co">${date}</div>
+          </div>
+        </div>
+        <p class="testimonial-quote">${truncate(review.text || 'Great service!')}</p>
+        <div class="testimonial-mark">"</div>
+      </div>`;
+  }
+
+  // Main: called by Maps JS API once loaded
+  function initReviews() {
+    // Hidden map element required by PlacesService
+    const mapDiv = document.createElement('div');
+    mapDiv.style.display = 'none';
+    document.body.appendChild(mapDiv);
+    const map     = new google.maps.Map(mapDiv, { center: {lat: 40.71, lng: -74.01}, zoom: 12 });
+    const service = new google.maps.places.PlacesService(map);
+
+    // Step 1 — find the Place ID
+    service.findPlaceFromQuery({
+      query: QUERY,
+      fields: ['place_id', 'url']
+    }, (results, status) => {
+      if (status !== 'OK' || !results || !results[0]) {
+        GRID.innerHTML = `<div class="reviews-empty">Reviews couldn't load right now. <a href="https://search.google.com/local/reviews?q=Castle+Data+Partners" target="_blank" rel="noopener" style="color:var(--blue)">View on Google →</a></div>`;
+        return;
+      }
+
+      const placeId = results[0].place_id;
+
+      // Update the "Reviews on Google" badge link with real place URL
+      if (results[0].url) {
+        BADGE_LINK.href = results[0].url;
+      } else {
+        BADGE_LINK.href = `https://www.google.com/maps/place/?q=place_id:${placeId}`;
+      }
+
+      // Step 2 — fetch reviews
+      service.getDetails({
+        placeId: placeId,
+        fields: ['reviews', 'rating', 'user_ratings_total', 'url']
+      }, (place, detailStatus) => {
+        if (detailStatus !== 'OK' || !place.reviews || place.reviews.length === 0) {
+          GRID.innerHTML = `<div class="reviews-empty">No reviews yet — <a href="${place?.url || 'https://g.page/r/write-a-review'}" target="_blank" rel="noopener" style="color:var(--blue)">be the first on Google →</a></div>`;
+          return;
+        }
+
+        // Update badge link to the actual Google Maps URL
+        if (place.url) BADGE_LINK.href = place.url;
+
+        // Show only reviews with text, 5-star first
+        const reviews = place.reviews
+          .filter(r => r.text && r.text.trim().length > 10)
+          .sort((a, b) => b.rating - a.rating)
+          .slice(0, 4);
+
+        if (reviews.length === 0) {
+          GRID.innerHTML = `<div class="reviews-empty">Reviews couldn't load right now.</div>`;
+          return;
+        }
+
+        GRID.innerHTML = reviews.map(buildCard).join('');
+      });
+    });
+  }
+</script>
+
+<!-- Load Google Maps JS API with Places library -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDveuiSVxOW85ETXw_A_VLh_HR1wqaUbCA&libraries=places&callback=initReviews" async defer></script>
+
+<script>
+  // ── Profile photo slideshow ──────────────────────────────────
+  // Add your photos as profile1.png, profile2.png, profile3.png, etc.
+  const photos = ['profile1.png', 'profile2.png', 'profile3.png'];
+  const img = document.getElementById('hero-photo');
+  let current = 0;
+
+  function preloadImages() {
+    photos.forEach(src => { const i = new Image(); i.src = src; });
+  }
+
+  function nextPhoto() {
+    const next = (current + 1) % photos.length;
+    img.style.opacity = '0';
+    setTimeout(() => {
+      img.src = photos[next];
+      img.onload = () => { img.style.opacity = '1'; };
+      setTimeout(() => { img.style.opacity = '1'; }, 100);
+      current = next;
+    }, 700);
+  }
+
+  preloadImages();
+  setInterval(nextPhoto, 5000);
+</script>
+
+</body>
+</html>

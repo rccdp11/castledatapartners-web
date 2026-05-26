@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio – Rinaldo Castillo</title>
+  <link rel="icon" href="TechCrestDark.png" type="image/png">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: #ffffff;
+      color: #2d2d2d;
+      line-height: 1.6;
+    }
+    a { text-decoration: none; color: inherit; }
+    :root {
+      --blue: #2979ff;
+      --border: #dde1e7;
+      --muted: #888;
+      --bg2: #f4f6f8;
+    }
+
+    /* ── Navbar ───────────────────────────────────────────────── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 48px; height: 68px;
+      background: #fff; border-bottom: 1px solid var(--border);
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: 12px;
+      font-size: 1.1rem; font-weight: 600; color: #1e1e1e;
+    }
+    .nav-logo .logo-icon {
+      width: 40px; height: 40px; background: var(--blue);
+      border-radius: 50%; display: flex; align-items: center;
+      justify-content: center; font-weight: 700; font-size: 1rem;
+      color: #fff; flex-shrink: 0;
+    }
+    .nav-logo .logo-last { color: var(--muted); font-weight: 400; }
+    .nav-links { display: flex; align-items: center; gap: 32px; list-style: none; }
+    .nav-links li a { font-size: 0.9rem; color: #666; transition: color .2s; }
+    .nav-links li a:hover { color: #1e1e1e; }
+    .nav-links li a.active { color: #1e1e1e; font-weight: 600; }
+    .nav-links li a.nav-company { color: var(--blue); font-weight: 600; }
+    .nav-links li a.nav-company:hover { color: #1a5fcc; }
+
+    /* ── Page Header ──────────────────────────────────────────── */
+    .page-header {
+      padding: 64px 64px 48px;
+      border-bottom: 1px solid var(--border);
+    }
+    .page-header-label {
+      font-size: 0.8rem; font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--blue); margin-bottom: 12px;
+    }
+    .page-header h1 {
+      font-size: clamp(2.4rem, 5vw, 3.6rem);
+      font-weight: 800; color: #1e1e1e; line-height: 1.1;
+    }
+    .page-header-desc {
+      font-size: 0.95rem; color: #666; margin-top: 14px; max-width: 520px;
+    }
+
+    /* ── Filter Bar ───────────────────────────────────────────── */
+    .filter-bar {
+      padding: 28px 64px;
+      display: flex; gap: 32px; flex-wrap: wrap;
+      border-bottom: 1px solid var(--border);
+      align-items: center;
+    }
+    .filter-btn {
+      font-size: 0.88rem; font-weight: 500; color: #999;
+      background: none; border: none; cursor: pointer;
+      font-family: inherit; padding: 0; transition: color .2s;
+      position: relative;
+    }
+    .filter-btn::after {
+      content: ''; position: absolute;
+      bottom: -4px; left: 0;
+      width: 0; height: 2px;
+      background: var(--blue);
+      transition: width .2s;
+    }
+    .filter-btn:hover { color: #1e1e1e; }
+    .filter-btn.active {
+      color: #1e1e1e; font-weight: 700;
+    }
+    .filter-btn.active::after { width: 100%; }
+
+    /* ── Portfolio Grid ───────────────────────────────────────── */
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      padding: 48px 64px;
+      gap: 24px;
+    }
+    @media (max-width: 900px) { .portfolio-grid { grid-template-columns: 1fr 1fr; padding: 32px 24px; } }
+    @media (max-width: 560px) { .portfolio-grid { grid-template-columns: 1fr; } }
+
+    /* ── Portfolio Card ───────────────────────────────────────── */
+    .portfolio-card {
+      position: relative;
+      border-radius: 8px;
+      overflow: hidden;
+      cursor: pointer;
+      display: block;
+      background: var(--bg2);
+    }
+    .portfolio-card-image {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      display: block;
+      transition: transform .4s ease;
+    }
+    .portfolio-card:hover .portfolio-card-image {
+      transform: scale(1.04);
+    }
+
+    /* Category badge */
+    .portfolio-card-badge {
+      position: absolute;
+      top: 14px; left: 14px;
+      background: #fff;
+      color: #1e1e1e;
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 5px 11px;
+      border-radius: 4px;
+      letter-spacing: 0.02em;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.12);
+      z-index: 2;
+    }
+
+    /* Hover overlay with title */
+    .portfolio-card-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.72) 0%, transparent 55%);
+      opacity: 0;
+      transition: opacity .3s ease;
+      display: flex;
+      align-items: flex-end;
+      padding: 20px;
+      z-index: 1;
+    }
+    .portfolio-card:hover .portfolio-card-overlay { opacity: 1; }
+    .portfolio-card-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.3;
+    }
+
+    /* ── Lightbox ─────────────────────────────────────────────── */
+    .lightbox {
+      display: none;
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,0.9);
+      z-index: 999;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+    .lightbox.open { display: flex; }
+    .lightbox-img {
+      max-width: 90vw;
+      max-height: 88vh;
+      border-radius: 6px;
+      object-fit: contain;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.5);
+    }
+    .lightbox-close {
+      position: fixed; top: 20px; right: 28px;
+      font-size: 2rem; color: #fff; cursor: pointer;
+      line-height: 1; background: none; border: none;
+      font-family: inherit; transition: opacity .2s;
+    }
+    .lightbox-close:hover { opacity: 0.7; }
+    .lightbox-caption {
+      position: fixed; bottom: 24px; left: 50%;
+      transform: translateX(-50%);
+      color: #ccc; font-size: 0.85rem; text-align: center;
+    }
+
+    /* ── Footer ───────────────────────────────────────────────── */
+    footer {
+      background: #1e1e1e; border-top: 1px solid #333;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 24px 64px; font-size: 0.82rem; color: #aaa;
+      flex-wrap: wrap; gap: 12px;
+    }
+    .footer-links { display: flex; gap: 24px; }
+    .footer-links a { color: #aaa; transition: color .2s; }
+    .footer-links a:hover { color: #fff; }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════════════════════
+     NAVBAR
+═══════════════════════════════════════════════════════════════ -->
+<nav>
+  <a href="aboutme.html" class="nav-logo">
+    <div class="logo-icon">R</div>
+    <span>Rinaldo <span class="logo-last">Castillo</span></span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="aboutme.html">About Me</a></li>
+    <li><a href="resume.html">Resume</a></li>
+    <li><a href="portfolio.html" class="active">Portfolio</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="index.html" class="nav-company">Castle Data Partners</a></li>
+  </ul>
+</nav>
+
+<!-- ══════════════════════════════════════════════════════════════
+     PAGE HEADER
+═══════════════════════════════════════════════════════════════ -->
+<div class="page-header">
+  <p class="page-header-label">My Work</p>
+  <h1>Portfolio</h1>
+  <p class="page-header-desc">Real field work, infrastructure builds, and hands-on IT support across New York and the East Coast.</p>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     FILTER BAR
+═══════════════════════════════════════════════════════════════ -->
+<div class="filter-bar">
+  <button class="filter-btn active" onclick="filterCards('all', this)">All</button>
+  <button class="filter-btn" onclick="filterCards('Field Service', this)">Field Service</button>
+  <button class="filter-btn" onclick="filterCards('Network Infrastructure', this)">Network Infrastructure</button>
+  <button class="filter-btn" onclick="filterCards('Hardware Repair', this)">Hardware Repair</button>
+  <button class="filter-btn" onclick="filterCards('IT Consulting', this)">IT Consulting</button>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     PORTFOLIO GRID
+     To add a new item: copy a .portfolio-card block, update the
+     data-category, image src, badge text, and title.
+═══════════════════════════════════════════════════════════════ -->
+<div class="portfolio-grid" id="portfolio-grid">
+
+  <div class="portfolio-card" data-category="IT Consulting"
+       onclick="openLightbox('photos-portfolio/datacenter-portrait.png', 'Data Center — IT Consulting')">
+    <img class="portfolio-card-image" src="photos-portfolio/datacenter-portrait.png" alt="Data center" />
+    <span class="portfolio-card-badge">IT Consulting</span>
+    <div class="portfolio-card-overlay">
+      <div class="portfolio-card-title">Data Center Operations</div>
+    </div>
+  </div>
+
+  <div class="portfolio-card" data-category="Hardware Repair"
+       onclick="openLightbox('photos-portfolio/hardware-repair.png', 'Hardware Repair — Bench Work')">
+    <img class="portfolio-card-image" src="photos-portfolio/hardware-repair.png" alt="Hardware repair" />
+    <span class="portfolio-card-badge">Hardware Repair</span>
+    <div class="portfolio-card-overlay">
+      <div class="portfolio-card-title">Hardware Diagnostics &amp; Repair</div>
+    </div>
+  </div>
+
+  <div class="portfolio-card" data-category="Field Service"
+       onclick="openLightbox('photos-portfolio/server-rack.png', 'Field Service — Server Rack Cabling')">
+    <img class="portfolio-card-image" src="photos-portfolio/server-rack.png" alt="Server rack cabling" />
+    <span class="portfolio-card-badge">Field Service</span>
+    <div class="portfolio-card-overlay">
+      <div class="portfolio-card-title">Server Rack Installation &amp; Cabling</div>
+    </div>
+  </div>
+
+  <div class="portfolio-card" data-category="IT Consulting"
+       onclick="openLightbox('photos-portfolio/office-consulting.png', 'IT Consulting — Multi-Monitor Workstation Setup')">
+    <img class="portfolio-card-image" src="photos-portfolio/office-consulting.png" alt="Office IT consulting" />
+    <span class="portfolio-card-badge">IT Consulting</span>
+    <div class="portfolio-card-overlay">
+      <div class="portfolio-card-title">Enterprise Workstation Deployment</div>
+    </div>
+  </div>
+
+  <div class="portfolio-card" data-category="Field Service"
+       onclick="openLightbox('photos-portfolio/pos-cabling.jpg', 'Field Service — POS System Deployment')">
+    <img class="portfolio-card-image" src="photos-portfolio/pos-cabling.jpg" alt="POS system cabling" />
+    <span class="portfolio-card-badge">Field Service</span>
+    <div class="portfolio-card-overlay">
+      <div class="portfolio-card-title">POS System Deployment &amp; Cabling</div>
+    </div>
+  </div>
+
+  <div class="portfolio-card" data-category="Network Infrastructure"
+       onclick="openLightbox('photos-portfolio/cable-management.jpg', 'Network Infrastructure — Cable Management')">
+    <img class="portfolio-card-image" src="photos-portfolio/cable-management.jpg" alt="Cable management" />
+    <span class="portfolio-card-badge">Network Infrastructure</span>
+    <div class="portfolio-card-overlay">
+      <div class="portfolio-card-title">Network Cabinet &amp; Cable Management</div>
+    </div>
+  </div>
+
+  <div class="portfolio-card" data-category="Network Infrastructure"
+       onclick="openLightbox('photos-portfolio/patch-panel.jpg', 'Network Infrastructure — Patch Panel')">
+    <img class="portfolio-card-image" src="photos-portfolio/patch-panel.jpg" alt="Patch panel" />
+    <span class="portfolio-card-badge">Network Infrastructure</span>
+    <div class="portfolio-card-overlay">
+      <div class="portfolio-card-title">Patch Panel &amp; Switch Configuration</div>
+    </div>
+  </div>
+
+  <!-- ADD NEW PORTFOLIO ITEMS ABOVE THIS LINE -->
+
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     LIGHTBOX
+═══════════════════════════════════════════════════════════════ -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+  <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+  <img class="lightbox-img" id="lightbox-img" src="" alt="" />
+  <div class="lightbox-caption" id="lightbox-caption"></div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     FOOTER
+═══════════════════════════════════════════════════════════════ -->
+<footer>
+  <span>© 2026 Castle Data Partners LLC. All rights reserved.</span>
+  <div class="footer-links">
+    <a href="aboutme.html">About Me</a>
+    <a href="resume.html">Resume</a>
+    <a href="blog.html">Blog</a>
+    <a href="index.html">Castle Data Partners</a>
+    <a href="contact.html">Contact</a>
+  </div>
+</footer>
+
+<script>
+  // ── Filter ──────────────────────────────────────────────────
+  function filterCards(category, btn) {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.portfolio-card').forEach(card => {
+      card.style.display = (category === 'all' || card.dataset.category === category) ? 'block' : 'none';
+    });
+  }
+
+  // ── Lightbox ─────────────────────────────────────────────────
+  function openLightbox(src, caption) {
+    document.getElementById('lightbox-img').src = src;
+    document.getElementById('lightbox-caption').textContent = caption;
+    document.getElementById('lightbox').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLightbox(e) {
+    if (e && e.target !== document.getElementById('lightbox') && !e.target.classList.contains('lightbox-close')) return;
+    document.getElementById('lightbox').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox({}); });
+</script>
+
+<style>
+@media (max-width: 768px) {
+  body { overflow-x: hidden; }
+
+  /* ── Nav ── */
+  nav {
+    padding: 10px 16px;
+    height: auto;
+    min-height: 60px;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .nav-links {
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+  .nav-links li a { font-size: 0.76rem; }
+
+  /* ── Page header ── */
+  .page-header { padding: 40px 20px 32px; }
+
+  /* ── Filter bar ── */
+  .filter-bar {
+    padding: 16px 20px;
+    gap: 16px;
+  }
+
+  /* ── Portfolio grid: already has responsive breakpoints, just tighten padding ── */
+  .portfolio-grid { padding: 32px 16px; }
+
+  /* ── Images ── */
+  .portfolio-card-image { max-width: 100%; height: auto; }
+
+  /* ── Lightbox ── */
+  .lightbox { padding: 16px; }
+  .lightbox-img { max-width: 95vw; max-height: 80vh; }
+
+  /* ── Footer ── */
+  footer {
+    padding: 20px 20px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .footer-links { flex-wrap: wrap; gap: 14px; }
+}
+</style>
+</body>
+</html>
