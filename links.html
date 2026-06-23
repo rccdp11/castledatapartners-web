@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rinaldo Castillo – Links</title>
+  <meta name="description" content="All the ways to reach Rinaldo Castillo and Castle Data Partners — resume, portfolio, blog, booking, and social links." />
+  <meta name="robots" content="index,follow" />
+  <meta name="theme-color" content="#2979ff" />
+  <link rel="icon" href="TechCrestDark.png" type="image/png">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: #eef0f3;
+      color: #2d2d2d;
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+    a { text-decoration: none; color: inherit; }
+
+    :root {
+      --blue: #2979ff;
+      --blue2: #1a5fcc;
+      --border: #dde1e7;
+      --muted: #888;
+      --ink: #1e1e1e;
+      --soft: #f4f6f8;
+    }
+
+    .links-shell {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 48px 16px;
+    }
+
+    .links-card {
+      width: min(100%, 460px);
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      box-shadow: 0 8px 28px rgba(0,0,0,0.08);
+      padding: 36px 28px 32px;
+      text-align: center;
+    }
+
+    .avatar-wrap {
+      width: 112px;
+      height: 112px;
+      margin: 0 auto 18px;
+      position: relative;
+    }
+    .avatar-wrap::before {
+      content: '';
+      position: absolute;
+      inset: -4px;
+      border-radius: 50%;
+      background: conic-gradient(var(--blue) 0deg 200deg, #d8dce2 200deg 360deg);
+      z-index: 0;
+    }
+    .avatar-wrap img {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 3px solid #fff;
+      display: block;
+    }
+
+    .links-name {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--ink);
+      margin-bottom: 4px;
+    }
+    .links-role {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--blue);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 10px;
+    }
+    .links-bio {
+      font-size: 0.9rem;
+      color: #666;
+      max-width: 360px;
+      margin: 0 auto 28px;
+    }
+
+    .links-group {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 24px;
+    }
+    .links-group:last-of-type { margin-bottom: 0; }
+
+    .group-label {
+      font-size: 0.7rem;
+      color: var(--muted);
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      text-align: left;
+      margin-bottom: 2px;
+    }
+
+    .link-btn {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-height: 54px;
+      padding: 12px 16px;
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      background: #fff;
+      color: var(--ink);
+      font-size: 0.95rem;
+      font-weight: 700;
+      transition: border-color .2s, background .2s, transform .15s;
+    }
+    .link-btn:hover {
+      border-color: var(--blue);
+      background: #f7faff;
+      transform: translateY(-1px);
+    }
+    .link-btn.primary {
+      border-color: var(--blue);
+      background: var(--blue);
+      color: #fff;
+    }
+    .link-btn.primary:hover {
+      background: var(--blue2);
+      border-color: var(--blue2);
+    }
+    .link-icon {
+      flex-shrink: 0;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--soft);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--blue);
+    }
+    .link-btn.primary .link-icon {
+      background: rgba(255,255,255,0.18);
+      color: #fff;
+    }
+    .link-icon svg { width: 17px; height: 17px; }
+    .link-text { flex: 1; text-align: left; }
+    .link-sub {
+      display: block;
+      font-size: 0.74rem;
+      font-weight: 500;
+      color: var(--muted);
+      margin-top: 1px;
+    }
+    .link-btn.primary .link-sub { color: rgba(255,255,255,0.82); }
+
+    .links-footer {
+      margin-top: 28px;
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+    .links-footer a { color: var(--blue); font-weight: 600; }
+
+    @media (max-width: 480px) {
+      .links-shell { padding: 28px 12px; align-items: flex-start; }
+      .links-card { border-radius: 16px; padding: 30px 20px 26px; }
+    }
+
+    @media (min-width: 768px) {
+      .links-card { padding: 44px 36px 38px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="links-shell">
+    <section class="links-card" aria-labelledby="links-heading">
+      <div class="avatar-wrap">
+        <img src="profile1.png" alt="Rinaldo Castillo" />
+      </div>
+      <h1 id="links-heading" class="links-name">Rinaldo "Ray" Castillo</h1>
+      <p class="links-role">Castle Data Partners Founder</p>
+      <p class="links-bio">IT support, networking & small business tech help in New York. Resume, work, and ways to connect — all in one place.</p>
+
+      <div class="links-group">
+        <a class="link-btn primary" href="https://www.castledatapartners.com" target="_blank" rel="noopener">
+          <span class="link-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20 15 15 0 0 1 0-20z"/></svg>
+          </span>
+          <span class="link-text">Castle Data Partners<span class="link-sub">IT services & support</span></span>
+        </a>
+      </div>
+
+      <div class="links-group">
+        <p class="group-label">Socials</p>
+        <a class="link-btn" href="https://www.instagram.com/castledatapartners" target="_blank" rel="noopener">
+          <span class="link-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+          </span>
+          <span class="link-text">Instagram<span class="link-sub">@castledatapartners</span></span>
+        </a>
+        <a class="link-btn" href="https://www.facebook.com/profile.php?id=61589971121600" target="_blank" rel="noopener">
+          <span class="link-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </span>
+          <span class="link-text">Facebook<span class="link-sub">Castle Data Partners</span></span>
+        </a>
+        <a class="link-btn" href="https://x.com/cdp_nyc" target="_blank" rel="noopener">
+          <span class="link-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4l16 16M20 4L4 20"/></svg>
+          </span>
+          <span class="link-text">X / Twitter<span class="link-sub">@cdp_nyc</span></span>
+        </a>
+        <a class="link-btn" href="https://www.tiktok.com/@castledatapartners" target="_blank" rel="noopener">
+          <span class="link-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg>
+          </span>
+          <span class="link-text">TikTok<span class="link-sub">@castledatapartners</span></span>
+        </a>
+      </div>
+
+      <div class="links-group">
+        <a class="link-btn" href="https://g.page/r/write-a-review" target="_blank" rel="noopener">
+          <span class="link-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-5.5-7-11a7 7 0 0 1 14 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
+          </span>
+          <span class="link-text">Google Business Profile<span class="link-sub">Reviews & business info</span></span>
+        </a>
+        <a class="link-btn" href="https://linkedin.com/in/rinaldo-castillo" target="_blank" rel="noopener">
+          <span class="link-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4V8h4v1.5A6 6 0 0 1 16 8z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          </span>
+          <span class="link-text">LinkedIn<span class="link-sub">in/rinaldo-castillo</span></span>
+        </a>
+        <a class="link-btn" href="mailto:info@castledatapartners.com">
+          <span class="link-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 6l-10 7L2 6"/></svg>
+          </span>
+          <span class="link-text">Email<span class="link-sub">info@castledatapartners.com</span></span>
+        </a>
+        <a class="link-btn" href="resume.html">
+          <span class="link-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
+          </span>
+          <span class="link-text">Resume Page<span class="link-sub">Interactive resume</span></span>
+        </a>
+      </div>
+
+      <p class="links-footer">© 2026 Castle Data Partners LLC · <a href="https://www.castledatapartners.com">castledatapartners.com</a></p>
+    </section>
+  </main>
+</body>
+</html>
